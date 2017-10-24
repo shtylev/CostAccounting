@@ -69,6 +69,7 @@
             this.menuItemArticlesReference.Name = "menuItemArticlesReference";
             this.menuItemArticlesReference.Size = new System.Drawing.Size(152, 22);
             this.menuItemArticlesReference.Text = "Статьи";
+            this.menuItemArticlesReference.Click += new System.EventHandler(this.menuItemArticlesReference_Click);
             // 
             // formMain
             // 

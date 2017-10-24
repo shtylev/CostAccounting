@@ -75,17 +75,18 @@
     <Compile Include="DAL\Analytics.cs" />
     <Compile Include="DAL\Articles.cs" />
     <Compile Include="DAL\Config.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="DAL\Dictionary.cs" />
+    <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Menu\FormAnalytics.cs">
+    <Compile Include="Forms\Menu\FormReferences.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Menu\FormAnalytics.Designer.cs">
-      <DependentUpon>FormAnalytics.cs</DependentUpon>
+    <Compile Include="Forms\Menu\FormReferences.Designer.cs">
+      <DependentUpon>FormReferences.cs</DependentUpon>
     </Compile>
     <Compile Include="Model_Data\Analytics.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
@@ -116,11 +117,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Menu\FormAnalytics.resx">
-      <DependentUpon>FormAnalytics.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Menu\FormReferences.resx">
+      <DependentUpon>FormReferences.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
