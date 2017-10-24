@@ -12,7 +12,7 @@ namespace CostAccounting.Model_Data
     using System;
     using System.Collections.Generic;
     
-    public partial class Balance
+    public partial class Balances
     {
         public int Id { get; set; }
         public Nullable<double> Sum { get; set; }

@@ -10,7 +10,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Active" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Articles">
@@ -18,10 +18,10 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Active" Type="bit" Nullable="false" />
         </EntityType>
-        <EntityType Name="Balance">
+        <EntityType Name="Balances">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -38,30 +38,30 @@
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Date" Type="date" Nullable="false" />
           <Property Name="Sum" Type="float" Nullable="false" />
-          <Property Name="Message" Type="varchar" MaxLength="200" />
+          <Property Name="Message" Type="nvarchar" MaxLength="200" />
           <Property Name="IdAnalytic" Type="int" Nullable="false" />
           <Property Name="IdArticle" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Balance_Analytics">
+        <Association Name="FK_Balances_Analytics">
           <End Role="Analytics" Type="Self.Analytics" Multiplicity="0..1" />
-          <End Role="Balance" Type="Self.Balance" Multiplicity="*" />
+          <End Role="Balances" Type="Self.Balances" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Analytics">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Balance">
+            <Dependent Role="Balances">
               <PropertyRef Name="IdAnalytic" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Balance_Articles">
+        <Association Name="FK_Balances_Articles">
           <End Role="Articles" Type="Self.Articles" Multiplicity="0..1" />
-          <End Role="Balance" Type="Self.Balance" Multiplicity="*" />
+          <End Role="Balances" Type="Self.Balances" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Articles">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Balance">
+            <Dependent Role="Balances">
               <PropertyRef Name="IdArticle" />
             </Dependent>
           </ReferentialConstraint>
@@ -93,15 +93,15 @@
         <EntityContainer Name="Хранилище DbCostAccountingModelContainer">
           <EntitySet Name="Analytics" EntityType="Self.Analytics" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Articles" EntityType="Self.Articles" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Balance" EntityType="Self.Balance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Balances" EntityType="Self.Balances" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Costs" EntityType="Self.Costs" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Balance_Analytics" Association="Self.FK_Balance_Analytics">
+          <AssociationSet Name="FK_Balances_Analytics" Association="Self.FK_Balances_Analytics">
             <End Role="Analytics" EntitySet="Analytics" />
-            <End Role="Balance" EntitySet="Balance" />
+            <End Role="Balances" EntitySet="Balances" />
           </AssociationSet>
-          <AssociationSet Name="FK_Balance_Articles" Association="Self.FK_Balance_Articles">
+          <AssociationSet Name="FK_Balances_Articles" Association="Self.FK_Balances_Articles">
             <End Role="Articles" EntitySet="Articles" />
-            <End Role="Balance" EntitySet="Balance" />
+            <End Role="Balances" EntitySet="Balances" />
           </AssociationSet>
           <AssociationSet Name="FK_Costs_Analytics" Association="Self.FK_Costs_Analytics">
             <End Role="Analytics" EntitySet="Analytics" />
@@ -122,9 +122,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Active" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Balance" Relationship="Self.FK_Balance_Analytics" FromRole="Analytics" ToRole="Balance" />
+          <NavigationProperty Name="Balances" Relationship="Self.FK_Balances_Analytics" FromRole="Analytics" ToRole="Balances" />
           <NavigationProperty Name="Costs" Relationship="Self.FK_Costs_Analytics" FromRole="Analytics" ToRole="Costs" />
         </EntityType>
         <EntityType Name="Articles">
@@ -132,12 +132,12 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Active" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Balance" Relationship="Self.FK_Balance_Articles" FromRole="Articles" ToRole="Balance" />
+          <NavigationProperty Name="Balances" Relationship="Self.FK_Balances_Articles" FromRole="Articles" ToRole="Balances" />
           <NavigationProperty Name="Costs" Relationship="Self.FK_Costs_Articles" FromRole="Articles" ToRole="Costs" />
         </EntityType>
-        <EntityType Name="Balance">
+        <EntityType Name="Balances">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -146,8 +146,8 @@
           <Property Name="Type" Type="Int32" Nullable="false" />
           <Property Name="IdAnalytic" Type="Int32" />
           <Property Name="IdArticle" Type="Int32" />
-          <NavigationProperty Name="Analytics" Relationship="Self.FK_Balance_Analytics" FromRole="Balance" ToRole="Analytics" />
-          <NavigationProperty Name="Articles" Relationship="Self.FK_Balance_Articles" FromRole="Balance" ToRole="Articles" />
+          <NavigationProperty Name="Analytics" Relationship="Self.FK_Balances_Analytics" FromRole="Balances" ToRole="Analytics" />
+          <NavigationProperty Name="Articles" Relationship="Self.FK_Balances_Articles" FromRole="Balances" ToRole="Articles" />
         </EntityType>
         <EntityType Name="Costs">
           <Key>
@@ -156,20 +156,20 @@
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Sum" Type="Double" Nullable="false" />
-          <Property Name="Message" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Message" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="IdAnalytic" Type="Int32" Nullable="false" />
           <Property Name="IdArticle" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Analytics" Relationship="Self.FK_Costs_Analytics" FromRole="Costs" ToRole="Analytics" />
           <NavigationProperty Name="Articles" Relationship="Self.FK_Costs_Articles" FromRole="Costs" ToRole="Articles" />
         </EntityType>
-        <Association Name="FK_Balance_Analytics">
+        <Association Name="FK_Balances_Analytics">
           <End Role="Analytics" Type="Self.Analytics" Multiplicity="0..1" />
-          <End Role="Balance" Type="Self.Balance" Multiplicity="*" />
+          <End Role="Balances" Type="Self.Balances" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Analytics">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Balance">
+            <Dependent Role="Balances">
               <PropertyRef Name="IdAnalytic" />
             </Dependent>
           </ReferentialConstraint>
@@ -186,14 +186,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Balance_Articles">
+        <Association Name="FK_Balances_Articles">
           <End Role="Articles" Type="Self.Articles" Multiplicity="0..1" />
-          <End Role="Balance" Type="Self.Balance" Multiplicity="*" />
+          <End Role="Balances" Type="Self.Balances" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Articles">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Balance">
+            <Dependent Role="Balances">
               <PropertyRef Name="IdArticle" />
             </Dependent>
           </ReferentialConstraint>
@@ -210,22 +210,22 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="DbCostAccountingEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="DbEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Analytics" EntityType="Self.Analytics" />
           <EntitySet Name="Articles" EntityType="Self.Articles" />
-          <EntitySet Name="Balance" EntityType="Self.Balance" />
+          <EntitySet Name="Balances" EntityType="Self.Balances" />
           <EntitySet Name="Costs" EntityType="Self.Costs" />
-          <AssociationSet Name="FK_Balance_Analytics" Association="Self.FK_Balance_Analytics">
+          <AssociationSet Name="FK_Balances_Analytics" Association="Self.FK_Balances_Analytics">
             <End Role="Analytics" EntitySet="Analytics" />
-            <End Role="Balance" EntitySet="Balance" />
+            <End Role="Balances" EntitySet="Balances" />
           </AssociationSet>
           <AssociationSet Name="FK_Costs_Analytics" Association="Self.FK_Costs_Analytics">
             <End Role="Analytics" EntitySet="Analytics" />
             <End Role="Costs" EntitySet="Costs" />
           </AssociationSet>
-          <AssociationSet Name="FK_Balance_Articles" Association="Self.FK_Balance_Articles">
+          <AssociationSet Name="FK_Balances_Articles" Association="Self.FK_Balances_Articles">
             <End Role="Articles" EntitySet="Articles" />
-            <End Role="Balance" EntitySet="Balance" />
+            <End Role="Balances" EntitySet="Balances" />
           </AssociationSet>
           <AssociationSet Name="FK_Costs_Articles" Association="Self.FK_Costs_Articles">
             <End Role="Articles" EntitySet="Articles" />
@@ -237,7 +237,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище DbCostAccountingModelContainer" CdmEntityContainer="DbCostAccountingEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище DbCostAccountingModelContainer" CdmEntityContainer="DbEntities">
           <EntitySetMapping Name="Analytics">
             <EntityTypeMapping TypeName="DbCostAccountingModel.Analytics">
               <MappingFragment StoreEntitySet="Analytics">
@@ -256,9 +256,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Balance">
-            <EntityTypeMapping TypeName="DbCostAccountingModel.Balance">
-              <MappingFragment StoreEntitySet="Balance">
+          <EntitySetMapping Name="Balances">
+            <EntityTypeMapping TypeName="DbCostAccountingModel.Balances">
+              <MappingFragment StoreEntitySet="Balances">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Sum" ColumnName="Sum" />
                 <ScalarProperty Name="Type" ColumnName="Type" />

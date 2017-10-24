@@ -13,10 +13,10 @@ namespace CostAccounting.Model_Data
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DbCostAccountingEntities : DbContext
+    public partial class DbEntities : DbContext
     {
-        public DbCostAccountingEntities()
-            : base("name=DbCostAccountingEntities")
+        public DbEntities()
+            : base("name=DbEntities")
         {
         }
     
@@ -27,7 +27,7 @@ namespace CostAccounting.Model_Data
     
         public virtual DbSet<Analytics> Analytics { get; set; }
         public virtual DbSet<Articles> Articles { get; set; }
-        public virtual DbSet<Balance> Balance { get; set; }
+        public virtual DbSet<Balances> Balances { get; set; }
         public virtual DbSet<Costs> Costs { get; set; }
     }
 }
