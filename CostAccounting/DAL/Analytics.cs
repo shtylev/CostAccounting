@@ -11,7 +11,7 @@ namespace CostAccounting.DAL
     {
         public static List<Model_Data.Analytics> GetAnalitics()
         {
-            return Config.db.Analytics.OrderBy(n => n.Name).ToList();
+            return Config.db.Analytics.Where(a => a.Active == true).OrderBy(n => n.Name).ToList();
         }
     }
 }
