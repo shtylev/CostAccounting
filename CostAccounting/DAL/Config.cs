@@ -9,6 +9,6 @@ namespace CostAccounting.DAL
 {
     public static class Config
     {
-        public static DbCostAccountingEntities db = new DbCostAccountingEntities();
+        public static DbEntities db = new DbEntities();
     }
 }
