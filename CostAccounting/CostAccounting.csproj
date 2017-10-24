@@ -72,6 +72,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAL\Analytics.cs" />
+    <Compile Include="DAL\Articles.cs" />
     <Compile Include="DAL\Config.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -79,35 +81,47 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Menu\FormAnalytics.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Menu\FormAnalytics.Designer.cs">
+      <DependentUpon>FormAnalytics.cs</DependentUpon>
+    </Compile>
     <Compile Include="Model_Data\Analytics.cs">
-      <DependentUpon>DbEntities.tt</DependentUpon>
+      <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model_Data\Articles.cs">
-      <DependentUpon>DbEntities.tt</DependentUpon>
+      <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model_Data\Balance.cs">
-      <DependentUpon>DbEntities.tt</DependentUpon>
+    <Compile Include="Model_Data\Balances.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model_Data\Costs.cs">
-      <DependentUpon>DbEntities.tt</DependentUpon>
+      <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model_Data\DbEntities.Context.cs">
+    <Compile Include="Model_Data\DbModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DbEntities.Context.tt</DependentUpon>
+      <DependentUpon>DbModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model_Data\DbEntities.cs">
+    <Compile Include="Model_Data\DbModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DbEntities.tt</DependentUpon>
+      <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model_Data\DbEntities.Designer.cs">
+    <Compile Include="Model_Data\DbModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DbEntities.edmx</DependentUpon>
+      <DependentUpon>DbModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Menu\FormAnalytics.resx">
+      <DependentUpon>FormAnalytics.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -117,12 +131,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EntityDeploy Include="Model_Data\DbEntities.edmx">
+    <EntityDeploy Include="Model_Data\DbModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DbEntities.Designer.cs</LastGenOutput>
+      <LastGenOutput>DbModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Model_Data\DbEntities.edmx.diagram">
-      <DependentUpon>DbEntities.edmx</DependentUpon>
+    <None Include="Model_Data\DbModel.edmx.diagram">
+      <DependentUpon>DbModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -158,15 +172,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>DbCostAccounting.mdf</DependentUpon>
     </Content>
-    <Content Include="Model_Data\DbEntities.Context.tt">
+    <Content Include="Model_Data\DbModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DbEntities.edmx</DependentUpon>
-      <LastGenOutput>DbEntities.Context.cs</LastGenOutput>
+      <DependentUpon>DbModel.edmx</DependentUpon>
+      <LastGenOutput>DbModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Model_Data\DbEntities.tt">
+    <Content Include="Model_Data\DbModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DbEntities.edmx</DependentUpon>
-      <LastGenOutput>DbEntities.cs</LastGenOutput>
+      <DependentUpon>DbModel.edmx</DependentUpon>
+      <LastGenOutput>DbModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup />
