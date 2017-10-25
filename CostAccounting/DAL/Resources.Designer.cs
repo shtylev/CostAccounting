@@ -77,5 +77,14 @@ namespace CostAccounting.DAL {
                 return ResourceManager.GetString("Articles", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на OK.
+        /// </summary>
+        internal static string OK {
+            get {
+                return ResourceManager.GetString("OK", resourceCulture);
+            }
+        }
     }
 }

@@ -123,4 +123,7 @@
   <data name="Articles" xml:space="preserve">
     <value>Статьи</value>
   </data>
+  <data name="OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
 </root>
