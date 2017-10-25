@@ -57,25 +57,28 @@
             this.conMenuRename,
             this.conMenuArchive});
             this.cmsReference.Name = "cmsReference";
-            this.cmsReference.Size = new System.Drawing.Size(162, 70);
+            this.cmsReference.Size = new System.Drawing.Size(181, 92);
             // 
             // conMenuCreate
             // 
             this.conMenuCreate.Name = "conMenuCreate";
             this.conMenuCreate.ShortcutKeys = System.Windows.Forms.Keys.F3;
-            this.conMenuCreate.Size = new System.Drawing.Size(161, 22);
+            this.conMenuCreate.Size = new System.Drawing.Size(180, 22);
             this.conMenuCreate.Text = "Создать";
+            this.conMenuCreate.Click += new System.EventHandler(this.conMenuCreate_Click);
             // 
             // conMenuRename
             // 
             this.conMenuRename.Name = "conMenuRename";
-            this.conMenuRename.Size = new System.Drawing.Size(161, 22);
+            this.conMenuRename.ShortcutKeys = System.Windows.Forms.Keys.F4;
+            this.conMenuRename.Size = new System.Drawing.Size(180, 22);
             this.conMenuRename.Text = "Переименовать";
             // 
             // conMenuArchive
             // 
             this.conMenuArchive.Name = "conMenuArchive";
-            this.conMenuArchive.Size = new System.Drawing.Size(161, 22);
+            this.conMenuArchive.ShortcutKeys = System.Windows.Forms.Keys.F6;
+            this.conMenuArchive.Size = new System.Drawing.Size(180, 22);
             this.conMenuArchive.Text = "Показать архив";
             // 
             // lblTypeReference
