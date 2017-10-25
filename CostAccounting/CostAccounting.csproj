@@ -72,10 +72,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DAL\Analytics.cs" />
-    <Compile Include="DAL\Articles.cs" />
+    <Compile Include="DAL\AnalyticsModel.cs" />
+    <Compile Include="DAL\ArticlesModel.cs" />
     <Compile Include="DAL\Config.cs" />
-    <Compile Include="DAL\Dictionary.cs" />
     <Compile Include="DAL\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -86,6 +85,12 @@
     </Compile>
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Menu\FormCreateRef.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Menu\FormCreateRef.Designer.cs">
+      <DependentUpon>FormCreateRef.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Menu\FormReferences.cs">
       <SubType>Form</SubType>
@@ -128,6 +133,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Menu\FormCreateRef.resx">
+      <DependentUpon>FormCreateRef.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Menu\FormReferences.resx">
       <DependentUpon>FormReferences.cs</DependentUpon>
