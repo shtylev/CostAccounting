@@ -19,15 +19,18 @@ namespace CostAccounting.Forms.Menu
         }
 
         private void FormAnalytics_Load(object sender, EventArgs e)
-        {
-            if (lblTypeReference.Text == Dictionary.TypeReference.Analytics.ToString())
+        {          
+            if (lblTypeReference.Text == Resources.Analytics)
             {
+                this.Text = Resources.Analytics;
                 listBoxAnalytics.DataSource = Analytics.GetAnalitics();
             }
-            if (lblTypeReference.Text == Dictionary.TypeReference.Articles.ToString())
+            if (lblTypeReference.Text == Resources.Articles)
             {
+                this.Text = Resources.Articles;
                 listBoxAnalytics.DataSource = Articles.GetArticles();                
             }
+
             listBoxAnalytics.DisplayMember = "Name";
             listBoxAnalytics.ValueMember = "Id";
         }
