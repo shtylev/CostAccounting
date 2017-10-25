@@ -60,14 +60,14 @@
             // menuItemAnalyticsReference
             // 
             this.menuItemAnalyticsReference.Name = "menuItemAnalyticsReference";
-            this.menuItemAnalyticsReference.Size = new System.Drawing.Size(152, 22);
+            this.menuItemAnalyticsReference.Size = new System.Drawing.Size(134, 22);
             this.menuItemAnalyticsReference.Text = "Аналитики";
             this.menuItemAnalyticsReference.Click += new System.EventHandler(this.menuItemAnalyticsReference_Click);
             // 
             // menuItemArticlesReference
             // 
             this.menuItemArticlesReference.Name = "menuItemArticlesReference";
-            this.menuItemArticlesReference.Size = new System.Drawing.Size(152, 22);
+            this.menuItemArticlesReference.Size = new System.Drawing.Size(134, 22);
             this.menuItemArticlesReference.Text = "Статьи";
             this.menuItemArticlesReference.Click += new System.EventHandler(this.menuItemArticlesReference_Click);
             // 
@@ -83,6 +83,7 @@
             this.Name = "formMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Учет расходов";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.formMain_FormClosed);
             this.Load += new System.EventHandler(this.formMain_Load);
             this.menuMain.ResumeLayout(false);
             this.menuMain.PerformLayout();
