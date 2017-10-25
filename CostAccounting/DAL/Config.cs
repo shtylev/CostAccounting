@@ -9,6 +9,16 @@ namespace CostAccounting.DAL
 {
     public static class Config
     {
-        public static DbEntities db = new DbEntities();
+        static DbEntities _db;        
+        public static DbEntities db
+        {
+            get
+            {
+                if (_db == null)
+                    return _db = new DbEntities();
+                else
+                    return _db;
+            }
+        }
     }
 }
