@@ -41,5 +41,10 @@ namespace CostAccounting
             formReference.lblTypeReference.Text = typeReference;
             formReference.ShowDialog();
         }
+
+        private void formMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Config.db.Dispose();
+        }
     }
 }
