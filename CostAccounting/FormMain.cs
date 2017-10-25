@@ -28,17 +28,17 @@ namespace CostAccounting
 
         private void menuItemAnalyticsReference_Click(object sender, EventArgs e)
         {
-            ShowFormReference(Dictionary.TypeReference.Analytics);
+            ShowFormReference(Resources.Analytics);
         }
 
         private void menuItemArticlesReference_Click(object sender, EventArgs e)
         {
-            ShowFormReference(Dictionary.TypeReference.Articles);
+            ShowFormReference(Resources.Articles);
         }
 
-        private void ShowFormReference(Dictionary.TypeReference typeReference)
+        private void ShowFormReference(string typeReference)
         {            
-            formReference.lblTypeReference.Text = typeReference.ToString();
+            formReference.lblTypeReference.Text = typeReference;
             formReference.ShowDialog();
         }
     }
