@@ -55,5 +55,27 @@ namespace CostAccounting.Forms.Menu
             FormRenameRef formRenRef = new FormRenameRef(this);
             formRenRef.ShowDialog();
         }
+
+        private void conMenuAddArchive_Click(object sender, EventArgs e)
+        {
+            int idRef = (int)listBoxReference.SelectedValue;
+            string result = "";
+
+            DialogResult resultDialog = MessageBox.Show("Вы уверены в своих действиях?", "Перемещение в архив", MessageBoxButtons.YesNo, MessageBoxIcon.None);
+
+            if(resultDialog == DialogResult.Yes)
+            {
+                if (lblTypeReference.Text == Resources.Analytics)                
+                    result = AnalyticsModel.AddAnalyticToArchive(idRef);
+                
+                if (lblTypeReference.Text == Resources.Articles)                
+                    result = ArticlesModel.AddArticleToArchive(idRef);
+
+                if (result == Resources.OK)
+                    GetReference();
+                else
+                    MessageBox.Show(result, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }            
+        }
     }
 }

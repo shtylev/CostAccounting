@@ -33,7 +33,8 @@
             this.cmsReference = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.conMenuCreate = new System.Windows.Forms.ToolStripMenuItem();
             this.conMenuRename = new System.Windows.Forms.ToolStripMenuItem();
-            this.conMenuArchive = new System.Windows.Forms.ToolStripMenuItem();
+            this.conMenuAddArchive = new System.Windows.Forms.ToolStripMenuItem();
+            this.conMenuShowArchive = new System.Windows.Forms.ToolStripMenuItem();
             this.lblTypeReference = new System.Windows.Forms.Label();
             this.cmsReference.SuspendLayout();
             this.SuspendLayout();
@@ -55,15 +56,16 @@
             this.cmsReference.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.conMenuCreate,
             this.conMenuRename,
-            this.conMenuArchive});
+            this.conMenuAddArchive,
+            this.conMenuShowArchive});
             this.cmsReference.Name = "cmsReference";
-            this.cmsReference.Size = new System.Drawing.Size(181, 70);
+            this.cmsReference.Size = new System.Drawing.Size(189, 114);
             // 
             // conMenuCreate
             // 
             this.conMenuCreate.Name = "conMenuCreate";
             this.conMenuCreate.ShortcutKeys = System.Windows.Forms.Keys.F3;
-            this.conMenuCreate.Size = new System.Drawing.Size(180, 22);
+            this.conMenuCreate.Size = new System.Drawing.Size(188, 22);
             this.conMenuCreate.Text = "Создать";
             this.conMenuCreate.Click += new System.EventHandler(this.conMenuCreate_Click);
             // 
@@ -71,16 +73,24 @@
             // 
             this.conMenuRename.Name = "conMenuRename";
             this.conMenuRename.ShortcutKeys = System.Windows.Forms.Keys.F4;
-            this.conMenuRename.Size = new System.Drawing.Size(180, 22);
+            this.conMenuRename.Size = new System.Drawing.Size(188, 22);
             this.conMenuRename.Text = "Переименовать";
             this.conMenuRename.Click += new System.EventHandler(this.conMenuRename_Click);
             // 
-            // conMenuArchive
+            // conMenuAddArchive
             // 
-            this.conMenuArchive.Name = "conMenuArchive";
-            this.conMenuArchive.ShortcutKeys = System.Windows.Forms.Keys.F6;
-            this.conMenuArchive.Size = new System.Drawing.Size(180, 22);
-            this.conMenuArchive.Text = "Показать архив";
+            this.conMenuAddArchive.Name = "conMenuAddArchive";
+            this.conMenuAddArchive.ShortcutKeys = System.Windows.Forms.Keys.F6;
+            this.conMenuAddArchive.Size = new System.Drawing.Size(188, 22);
+            this.conMenuAddArchive.Text = "Добавить в архив";
+            this.conMenuAddArchive.Click += new System.EventHandler(this.conMenuAddArchive_Click);
+            // 
+            // conMenuShowArchive
+            // 
+            this.conMenuShowArchive.Name = "conMenuShowArchive";
+            this.conMenuShowArchive.ShortcutKeys = System.Windows.Forms.Keys.F7;
+            this.conMenuShowArchive.Size = new System.Drawing.Size(188, 22);
+            this.conMenuShowArchive.Text = "Показать архив";
             // 
             // lblTypeReference
             // 
@@ -115,7 +125,8 @@
         private System.Windows.Forms.ContextMenuStrip cmsReference;
         private System.Windows.Forms.ToolStripMenuItem conMenuCreate;
         private System.Windows.Forms.ToolStripMenuItem conMenuRename;
-        private System.Windows.Forms.ToolStripMenuItem conMenuArchive;
+        private System.Windows.Forms.ToolStripMenuItem conMenuAddArchive;
         public System.Windows.Forms.ListBox listBoxReference;
+        private System.Windows.Forms.ToolStripMenuItem conMenuShowArchive;
     }
 }
