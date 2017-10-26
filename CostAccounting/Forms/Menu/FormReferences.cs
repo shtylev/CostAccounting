@@ -38,16 +38,22 @@ namespace CostAccounting.Forms.Menu
             if (lblTypeReference.Text == Resources.Analytics)
             {
                 this.Text = Resources.Analytics;
-                listBoxAnalytics.DataSource = AnalyticsModel.GetAnalytics();
+                listBoxReference.DataSource = AnalyticsModel.GetAnalytics();
             }
             if (lblTypeReference.Text == Resources.Articles)
             {
                 this.Text = Resources.Articles;
-                listBoxAnalytics.DataSource = ArticlesModel.GetArticles();
+                listBoxReference.DataSource = ArticlesModel.GetArticles();
             }
 
-            listBoxAnalytics.DisplayMember = "Name";
-            listBoxAnalytics.ValueMember = "Id";
+            listBoxReference.DisplayMember = "Name";
+            listBoxReference.ValueMember = "Id";
+        }
+
+        private void conMenuRename_Click(object sender, EventArgs e)
+        {
+            FormRenameRef formRenRef = new FormRenameRef(this);
+            formRenRef.ShowDialog();
         }
     }
 }

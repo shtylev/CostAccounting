@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.listBoxAnalytics = new System.Windows.Forms.ListBox();
+            this.listBoxReference = new System.Windows.Forms.ListBox();
             this.cmsReference = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.conMenuCreate = new System.Windows.Forms.ToolStripMenuItem();
             this.conMenuRename = new System.Windows.Forms.ToolStripMenuItem();
@@ -38,17 +38,17 @@
             this.cmsReference.SuspendLayout();
             this.SuspendLayout();
             // 
-            // listBoxAnalytics
+            // listBoxReference
             // 
-            this.listBoxAnalytics.ContextMenuStrip = this.cmsReference;
-            this.listBoxAnalytics.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listBoxAnalytics.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.listBoxAnalytics.FormattingEnabled = true;
-            this.listBoxAnalytics.ItemHeight = 16;
-            this.listBoxAnalytics.Location = new System.Drawing.Point(0, 0);
-            this.listBoxAnalytics.Name = "listBoxAnalytics";
-            this.listBoxAnalytics.Size = new System.Drawing.Size(154, 201);
-            this.listBoxAnalytics.TabIndex = 0;
+            this.listBoxReference.ContextMenuStrip = this.cmsReference;
+            this.listBoxReference.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listBoxReference.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.listBoxReference.FormattingEnabled = true;
+            this.listBoxReference.ItemHeight = 16;
+            this.listBoxReference.Location = new System.Drawing.Point(0, 0);
+            this.listBoxReference.Name = "listBoxReference";
+            this.listBoxReference.Size = new System.Drawing.Size(154, 201);
+            this.listBoxReference.TabIndex = 0;
             // 
             // cmsReference
             // 
@@ -57,7 +57,7 @@
             this.conMenuRename,
             this.conMenuArchive});
             this.cmsReference.Name = "cmsReference";
-            this.cmsReference.Size = new System.Drawing.Size(181, 92);
+            this.cmsReference.Size = new System.Drawing.Size(181, 70);
             // 
             // conMenuCreate
             // 
@@ -73,6 +73,7 @@
             this.conMenuRename.ShortcutKeys = System.Windows.Forms.Keys.F4;
             this.conMenuRename.Size = new System.Drawing.Size(180, 22);
             this.conMenuRename.Text = "Переименовать";
+            this.conMenuRename.Click += new System.EventHandler(this.conMenuRename_Click);
             // 
             // conMenuArchive
             // 
@@ -96,7 +97,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(154, 201);
             this.Controls.Add(this.lblTypeReference);
-            this.Controls.Add(this.listBoxAnalytics);
+            this.Controls.Add(this.listBoxReference);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.MaximizeBox = false;
             this.Name = "FormReferences";
@@ -110,12 +111,11 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.ListBox listBoxAnalytics;
         public System.Windows.Forms.Label lblTypeReference;
         private System.Windows.Forms.ContextMenuStrip cmsReference;
         private System.Windows.Forms.ToolStripMenuItem conMenuCreate;
         private System.Windows.Forms.ToolStripMenuItem conMenuRename;
         private System.Windows.Forms.ToolStripMenuItem conMenuArchive;
+        public System.Windows.Forms.ListBox listBoxReference;
     }
 }
