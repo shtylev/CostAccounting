@@ -10,7 +10,7 @@ namespace CostAccounting.DAL
     public class AnalyticsModel
     {
         /// <summary>
-        /// Получение всех активных аналитик
+        /// Получает все активные аналитики
         /// </summary>
         /// <returns>Список аналитик</returns>
         public static List<Analytics> GetAnalytics()
@@ -18,7 +18,7 @@ namespace CostAccounting.DAL
             return Config.db.Analytics.Where(a => a.Active == true).OrderBy(n => n.Name).ToList();
         }
         /// <summary>
-        /// Получение одной аналитики
+        /// Получает одну аналитику
         /// </summary>
         /// <param name="idAnalytic">id аналитики</param>
         /// <returns></returns>
@@ -27,7 +27,7 @@ namespace CostAccounting.DAL
             return Config.db.Analytics.Where(i => i.Id == idAnalytic).FirstOrDefault();
         }
         /// <summary>
-        /// Создание аналитики
+        /// Создает аналитику
         /// </summary>
         /// <param name="nameAnalytic">Имя новой аналитики</param>
         /// <returns></returns>
@@ -48,7 +48,7 @@ namespace CostAccounting.DAL
             }            
         }
         /// <summary>
-        /// Переименование выбранной аналитики
+        /// Переименовывает аналитику
         /// </summary>
         /// <param name="newName">Новое имя аналитики</param>
         /// <param name="idAnalytic">id выбранной аналитики</param>
@@ -56,9 +56,28 @@ namespace CostAccounting.DAL
         public static string RenameAnalytic(string newName, int idAnalytic)
         {
             Analytics analytic = GetAnalytic(idAnalytic);
-            analytic.Name = newName;
             try
             {
+                analytic.Name = newName;
+                Config.db.SaveChanges();
+                return Resources.OK;
+            }
+            catch(Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+        /// <summary>
+        /// Добавляет аналитику в архив
+        /// </summary>
+        /// <param name="idAnalytic">id выбранной аналитики</param>
+        /// <returns></returns>
+        public static string AddAnalyticToArchive(int idAnalytic)
+        {
+            Analytics analytic = GetAnalytic(idAnalytic);
+            try
+            {
+                analytic.Active = false;
                 Config.db.SaveChanges();
                 return Resources.OK;
             }
