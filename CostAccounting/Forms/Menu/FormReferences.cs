@@ -26,9 +26,7 @@ namespace CostAccounting.Forms.Menu
         }
 
         private void conMenuCreate_Click(object sender, EventArgs e)
-        {
-            //Analytics analytic = (Analytics)listBoxAnalytics.SelectedItem;
-            //int id = (int)listBoxAnalytics.SelectedValue;
+        {            
             FormCreateRef formCreateRef = new FormCreateRef(this);
             formCreateRef.ShowDialog();
         }
