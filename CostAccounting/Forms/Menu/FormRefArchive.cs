@@ -40,5 +40,30 @@ namespace CostAccounting.Forms.Menu
             listBoxRefArchive.DisplayMember = "Name";
             listBoxRefArchive.ValueMember = "Id";
         }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            int idRef = (int)listBoxRefArchive.SelectedValue;
+            string result = "";
+
+            DialogResult resultDialog = MessageBox.Show("Вы уверены в своих действиях?", "Удаление из архива", MessageBoxButtons.YesNo, MessageBoxIcon.None);
+
+            if (resultDialog == DialogResult.Yes)
+            {
+                if (formRef.lblTypeReference.Text == Resources.Analytics)
+                    result = AnalyticsModel.RemoveFromArchive(idRef);
+
+                if (formRef.lblTypeReference.Text == Resources.Articles)
+                    result = ArticlesModel.RemoveFromArchive(idRef);
+
+                if (result == Resources.OK)
+                {
+                    GetRefArchive();
+                    formRef.GetReference();
+                }                    
+                else
+                    MessageBox.Show(result, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
