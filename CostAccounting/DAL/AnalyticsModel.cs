@@ -86,5 +86,13 @@ namespace CostAccounting.DAL
                 return ex.Message;
             }
         }
+        /// <summary>
+        /// Получает все архивные аналитики
+        /// </summary>
+        /// <returns></returns>
+        public static List<Analytics> GerAnalyticsArchive()
+        {
+            return Config.db.Analytics.Where(a => a.Active == false).OrderBy(n => n.Name).ToList();
+        }
     }
 }
