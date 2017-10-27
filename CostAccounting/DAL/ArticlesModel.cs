@@ -87,5 +87,13 @@ namespace CostAccounting.DAL
                 return ex.Message;
             }
         }
+        /// <summary>
+        /// Получает все архивные статьи
+        /// </summary>
+        /// <returns></returns>
+        public static List<Articles> GetArticlesArchive()
+        {
+            return Config.db.Articles.Where(a => a.Active == false).OrderBy(n => n.Name).ToList();
+        }
     }
 }
