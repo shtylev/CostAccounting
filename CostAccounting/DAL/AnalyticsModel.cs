@@ -94,5 +94,25 @@ namespace CostAccounting.DAL
         {
             return Config.db.Analytics.Where(a => a.Active == false).OrderBy(n => n.Name).ToList();
         }
+        /// <summary>
+        /// Удаляет аналитику из архива
+        /// </summary>
+        /// <param name="idAnalytic">id выбранной аналитики</param>
+        /// <returns></returns>
+        public static string RemoveFromArchive(int idAnalytic)
+        {
+            Analytics analytic = GetAnalytic(idAnalytic);
+
+            try
+            {
+                analytic.Active = true;
+                Config.db.SaveChanges();
+                return Resources.OK;
+            }
+            catch(Exception ex)
+            {
+                return ex.Message;
+            }
+        }
     }
 }
