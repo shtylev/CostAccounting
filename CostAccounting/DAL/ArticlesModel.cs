@@ -95,5 +95,25 @@ namespace CostAccounting.DAL
         {
             return Config.db.Articles.Where(a => a.Active == false).OrderBy(n => n.Name).ToList();
         }
+        /// <summary>
+        /// Удаляет статью из архива
+        /// </summary>
+        /// <param name="idArticle">id выбранной статьи</param>
+        /// <returns></returns>
+        public static string RemoveFromArchive(int idArticle)
+        {
+            Articles article = GetArticle(idArticle);
+
+            try
+            {
+                article.Active = true;
+                Config.db.SaveChanges();
+                return Resources.OK;
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
     }
 }
