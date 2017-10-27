@@ -75,5 +75,11 @@ namespace CostAccounting.Forms.Menu
                     MessageBox.Show(result, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }            
         }
+
+        private void conMenuShowArchive_Click(object sender, EventArgs e)
+        {
+            FormRefArchive formRefArchive = new FormRefArchive(this);
+            formRefArchive.ShowDialog();
+        }
     }
 }

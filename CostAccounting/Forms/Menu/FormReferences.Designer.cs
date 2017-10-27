@@ -91,6 +91,7 @@
             this.conMenuShowArchive.ShortcutKeys = System.Windows.Forms.Keys.F7;
             this.conMenuShowArchive.Size = new System.Drawing.Size(188, 22);
             this.conMenuShowArchive.Text = "Показать архив";
+            this.conMenuShowArchive.Click += new System.EventHandler(this.conMenuShowArchive_Click);
             // 
             // lblTypeReference
             // 
