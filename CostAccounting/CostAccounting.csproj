@@ -119,9 +119,6 @@
     <Compile Include="Model_Data\Articles.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model_Data\Balances.cs">
-      <DependentUpon>DbModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Model_Data\Costs.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
@@ -139,6 +136,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DbModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model_Data\Saldo.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

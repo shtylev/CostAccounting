@@ -4,15 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f50f81bcbb5d406da3452356fbcb714d" Name="Diagram1">
-        <EntityTypeShape EntityType="DbCostAccountingModel.Analytics" Width="1.5" PointX="5.75" PointY="0.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DbCostAccountingModel.Articles" Width="1.5" PointX="2.5" PointY="0.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DbCostAccountingModel.Balances" Width="1.5" PointX="3.25" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="DbCostAccountingModel.Costs" Width="1.5" PointX="6" PointY="3.5" IsExpanded="true" />
-        <AssociationConnector Association="DbCostAccountingModel.FK_Balances_Analytics" ManuallyRouted="false" />
+      <Diagram DiagramId="7f619490af3d41ef9c4a6d7c2ddbca74" Name="Diagram1">
+        <EntityTypeShape EntityType="DbCostAccountingModel.Analytics" Width="1.5" PointX="6.625" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbCostAccountingModel.Articles" Width="1.5" PointX="3.75" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbCostAccountingModel.Costs" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbCostAccountingModel.Saldo" Width="1.5" PointX="5.375" PointY="3.375" IsExpanded="true" />
         <AssociationConnector Association="DbCostAccountingModel.FK_Costs_Analytics" ManuallyRouted="false" />
-        <AssociationConnector Association="DbCostAccountingModel.FK_Balances_Articles" ManuallyRouted="false" />
+        <AssociationConnector Association="DbCostAccountingModel.FK_Saldo_Analytics" ManuallyRouted="false" />
         <AssociationConnector Association="DbCostAccountingModel.FK_Costs_Articles" ManuallyRouted="false" />
+        <AssociationConnector Association="DbCostAccountingModel.FK_Saldo_Articles" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

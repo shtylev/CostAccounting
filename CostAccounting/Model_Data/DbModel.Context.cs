@@ -27,7 +27,7 @@ namespace CostAccounting.Model_Data
     
         public virtual DbSet<Analytics> Analytics { get; set; }
         public virtual DbSet<Articles> Articles { get; set; }
-        public virtual DbSet<Balances> Balances { get; set; }
         public virtual DbSet<Costs> Costs { get; set; }
+        public virtual DbSet<Saldo> Saldo { get; set; }
     }
 }

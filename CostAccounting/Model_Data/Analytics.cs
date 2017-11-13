@@ -17,8 +17,8 @@ namespace CostAccounting.Model_Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Analytics()
         {
-            this.Balances = new HashSet<Balances>();
             this.Costs = new HashSet<Costs>();
+            this.Saldo = new HashSet<Saldo>();
         }
     
         public int Id { get; set; }
@@ -26,8 +26,8 @@ namespace CostAccounting.Model_Data
         public bool Active { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Balances> Balances { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Costs> Costs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Saldo> Saldo { get; set; }
     }
 }

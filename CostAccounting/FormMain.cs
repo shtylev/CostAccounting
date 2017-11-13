@@ -23,7 +23,7 @@ namespace CostAccounting
 
         private void formMain_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void menuItemAnalyticsReference_Click(object sender, EventArgs e)
