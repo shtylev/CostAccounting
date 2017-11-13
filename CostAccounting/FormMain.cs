@@ -46,5 +46,11 @@ namespace CostAccounting
         {
             Config.db.Dispose();
         }
+
+        private void menuItemAddSaldoBegin_Click(object sender, EventArgs e)
+        {
+            FormAddSaldoBegin formAddSaldoBegin = new FormAddSaldoBegin();
+            formAddSaldoBegin.ShowDialog();
+        }
     }
 }

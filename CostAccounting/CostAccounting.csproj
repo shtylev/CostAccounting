@@ -78,6 +78,7 @@
     <Compile Include="DAL\AnalyticsEntities.cs" />
     <Compile Include="DAL\ArticlesEntities.cs" />
     <Compile Include="DAL\Config.cs" />
+    <Compile Include="DAL\Dictionary.cs" />
     <Compile Include="DAL\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -88,6 +89,12 @@
     </Compile>
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Menu\FormAddSaldoBegin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Menu\FormAddSaldoBegin.Designer.cs">
+      <DependentUpon>FormAddSaldoBegin.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Menu\FormCreateRef.cs">
       <SubType>Form</SubType>
@@ -148,6 +155,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Menu\FormAddSaldoBegin.resx">
+      <DependentUpon>FormAddSaldoBegin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Menu\FormCreateRef.resx">
       <DependentUpon>FormCreateRef.cs</DependentUpon>

@@ -33,6 +33,7 @@
             this.menuItemReference = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemAnalyticsReference = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemArticlesReference = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemAddSaldoBegin = new System.Windows.Forms.ToolStripMenuItem();
             this.menuMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,6 +52,7 @@
             // menuItemReference
             // 
             this.menuItemReference.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuItemAddSaldoBegin,
             this.menuItemAnalyticsReference,
             this.menuItemArticlesReference});
             this.menuItemReference.Name = "menuItemReference";
@@ -60,16 +62,23 @@
             // menuItemAnalyticsReference
             // 
             this.menuItemAnalyticsReference.Name = "menuItemAnalyticsReference";
-            this.menuItemAnalyticsReference.Size = new System.Drawing.Size(134, 22);
+            this.menuItemAnalyticsReference.Size = new System.Drawing.Size(214, 22);
             this.menuItemAnalyticsReference.Text = "Аналитики";
             this.menuItemAnalyticsReference.Click += new System.EventHandler(this.menuItemAnalyticsReference_Click);
             // 
             // menuItemArticlesReference
             // 
             this.menuItemArticlesReference.Name = "menuItemArticlesReference";
-            this.menuItemArticlesReference.Size = new System.Drawing.Size(134, 22);
+            this.menuItemArticlesReference.Size = new System.Drawing.Size(214, 22);
             this.menuItemArticlesReference.Text = "Статьи";
             this.menuItemArticlesReference.Click += new System.EventHandler(this.menuItemArticlesReference_Click);
+            // 
+            // menuItemAddSaldoBegin
+            // 
+            this.menuItemAddSaldoBegin.Name = "menuItemAddSaldoBegin";
+            this.menuItemAddSaldoBegin.Size = new System.Drawing.Size(214, 22);
+            this.menuItemAddSaldoBegin.Text = "Ввести начальное сальдо";
+            this.menuItemAddSaldoBegin.Click += new System.EventHandler(this.menuItemAddSaldoBegin_Click);
             // 
             // formMain
             // 
@@ -98,6 +107,7 @@
         private System.Windows.Forms.ToolStripMenuItem menuItemReference;
         private System.Windows.Forms.ToolStripMenuItem menuItemAnalyticsReference;
         private System.Windows.Forms.ToolStripMenuItem menuItemArticlesReference;
+        private System.Windows.Forms.ToolStripMenuItem menuItemAddSaldoBegin;
     }
 }
 
