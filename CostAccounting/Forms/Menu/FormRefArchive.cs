@@ -29,12 +29,12 @@ namespace CostAccounting.Forms.Menu
             if (formRef.lblTypeReference.Text == Resources.Analytics)
             {
                 this.Text = "Архив аналитик";
-                listBoxRefArchive.DataSource = AnalyticsModel.GerAnalyticsArchive();
+                listBoxRefArchive.DataSource = AnalyticsEntities.GerAnalyticsArchive();
             }
             if (formRef.lblTypeReference.Text == Resources.Articles)
             {
                 this.Text = "Архив статей";
-                listBoxRefArchive.DataSource = ArticlesModel.GetArticlesArchive();
+                listBoxRefArchive.DataSource = ArticlesEntities.GetArticlesArchive();
             }
 
             listBoxRefArchive.DisplayMember = "Name";
@@ -51,10 +51,10 @@ namespace CostAccounting.Forms.Menu
             if (resultDialog == DialogResult.Yes)
             {
                 if (formRef.lblTypeReference.Text == Resources.Analytics)
-                    result = AnalyticsModel.RemoveFromArchive(idRef);
+                    result = AnalyticsEntities.RemoveFromArchive(idRef);
 
                 if (formRef.lblTypeReference.Text == Resources.Articles)
-                    result = ArticlesModel.RemoveFromArchive(idRef);
+                    result = ArticlesEntities.RemoveFromArchive(idRef);
 
                 if (result == Resources.OK)
                 {

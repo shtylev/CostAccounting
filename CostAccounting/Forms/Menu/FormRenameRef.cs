@@ -38,9 +38,9 @@ namespace CostAccounting.Forms.Menu
                 int idRef = (int)formRef.listBoxReference.SelectedValue;
 
                 if (formRef.lblTypeReference.Text == Resources.Analytics)
-                    result = AnalyticsModel.RenameAnalytic(txtNewNameRef.Text, idRef);
+                    result = AnalyticsEntities.RenameAnalytic(txtNewNameRef.Text, idRef);
                 if (formRef.lblTypeReference.Text == Resources.Articles)
-                    result = ArticlesModel.RenameArticle(txtNewNameRef.Text, idRef);
+                    result = ArticlesEntities.RenameArticle(txtNewNameRef.Text, idRef);
 
                 if (result == Resources.OK)
                 {

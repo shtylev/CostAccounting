@@ -36,12 +36,12 @@ namespace CostAccounting.Forms.Menu
             if (lblTypeReference.Text == Resources.Analytics)
             {
                 this.Text = Resources.Analytics;
-                listBoxReference.DataSource = AnalyticsModel.GetAnalytics();
+                listBoxReference.DataSource = AnalyticsEntities.GetAnalytics();
             }
             if (lblTypeReference.Text == Resources.Articles)
             {
                 this.Text = Resources.Articles;
-                listBoxReference.DataSource = ArticlesModel.GetArticles();
+                listBoxReference.DataSource = ArticlesEntities.GetArticles();
             }
 
             listBoxReference.DisplayMember = "Name";
@@ -64,10 +64,10 @@ namespace CostAccounting.Forms.Menu
             if(resultDialog == DialogResult.Yes)
             {
                 if (lblTypeReference.Text == Resources.Analytics)                
-                    result = AnalyticsModel.AddAnalyticToArchive(idRef);
+                    result = AnalyticsEntities.AddAnalyticToArchive(idRef);
                 
                 if (lblTypeReference.Text == Resources.Articles)                
-                    result = ArticlesModel.AddArticleToArchive(idRef);
+                    result = ArticlesEntities.AddArticleToArchive(idRef);
 
                 if (result == Resources.OK)
                     GetReference();

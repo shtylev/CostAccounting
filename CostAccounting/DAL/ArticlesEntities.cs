@@ -7,7 +7,7 @@ using CostAccounting.Model_Data;
 
 namespace CostAccounting.DAL
 {
-    public static class ArticlesModel
+    public static class ArticlesEntities
     {
         /// <summary>
         /// Получает все активные статьи

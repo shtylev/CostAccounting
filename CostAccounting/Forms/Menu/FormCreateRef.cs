@@ -25,9 +25,9 @@ namespace CostAccounting.Forms.Menu
             string result = "";
 
             if (formRef.lblTypeReference.Text == Resources.Analytics)
-                result = AnalyticsModel.CreateAnalytic(txtNameRef.Text);
+                result = AnalyticsEntities.CreateAnalytic(txtNameRef.Text);
             if (formRef.lblTypeReference.Text == Resources.Articles)
-                result = ArticlesModel.CreateArticle(txtNameRef.Text);
+                result = ArticlesEntities.CreateArticle(txtNameRef.Text);
 
             if (result == Resources.OK)
             {

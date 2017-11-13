@@ -7,7 +7,7 @@ using CostAccounting.Model_Data;
 
 namespace CostAccounting.DAL
 {
-    public class AnalyticsModel
+    public class AnalyticsEntities
     {
         /// <summary>
         /// Получает все активные аналитики
