@@ -120,6 +120,7 @@
     <Compile Include="Forms\Menu\FormRenameRef.Designer.cs">
       <DependentUpon>FormRenameRef.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\SaldoModel.cs" />
     <Compile Include="Model_Data\Analytics.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
@@ -232,9 +233,7 @@
       <LastGenOutput>DbModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
