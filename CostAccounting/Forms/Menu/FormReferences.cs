@@ -16,7 +16,7 @@ namespace CostAccounting.Forms.Menu
     {        
         public FormReferences()
         {
-            InitializeComponent();            
+            InitializeComponent();
         }
 
         private void FormAnalytics_Load(object sender, EventArgs e)
