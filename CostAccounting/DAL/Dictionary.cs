@@ -8,7 +8,7 @@ namespace CostAccounting.DAL
 {
     public class Dictionary
     {
-        enum TypeSaldo
+        public enum TypeSaldo
         {
             saldoStartingPeriod = 1,
             saldoEndPeriod = 2
