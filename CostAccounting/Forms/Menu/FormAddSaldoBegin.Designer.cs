@@ -48,9 +48,11 @@
             // 
             // cmbRefAnalytics
             // 
+            this.cmbRefAnalytics.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbRefAnalytics.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbRefAnalytics.FormattingEnabled = true;
             this.cmbRefAnalytics.Location = new System.Drawing.Point(6, 56);
-            this.cmbRefAnalytics.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbRefAnalytics.Margin = new System.Windows.Forms.Padding(4);
             this.cmbRefAnalytics.Name = "cmbRefAnalytics";
             this.cmbRefAnalytics.Size = new System.Drawing.Size(170, 24);
             this.cmbRefAnalytics.TabIndex = 0;
@@ -102,6 +104,7 @@
             this.btnAddAnalytic.TabIndex = 4;
             this.btnAddAnalytic.Text = "Добавить";
             this.btnAddAnalytic.UseVisualStyleBackColor = true;
+            this.btnAddAnalytic.Click += new System.EventHandler(this.btnAddAnalytic_Click);
             // 
             // groupBoxArticles
             // 
@@ -146,6 +149,8 @@
             // 
             // cmbRefArticles
             // 
+            this.cmbRefArticles.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbRefArticles.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbRefArticles.FormattingEnabled = true;
             this.cmbRefArticles.Location = new System.Drawing.Point(6, 56);
             this.cmbRefArticles.Margin = new System.Windows.Forms.Padding(4);
@@ -183,7 +188,7 @@
             this.Controls.Add(this.groupBoxAnalytics);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormAddSaldoBegin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Сальдо на начало периода";
