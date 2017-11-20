@@ -10,5 +10,11 @@ namespace CostAccounting.Model
     {
         public string Name { get; set; }
         public double Sum { get; set; }
+
+        public SaldoModel(string name, double sum)
+        {
+            Name = name;
+            Sum = sum;
+        }
     }
 }
