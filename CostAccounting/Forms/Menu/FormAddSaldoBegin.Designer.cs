@@ -130,6 +130,7 @@
             this.btnAddArticle.TabIndex = 4;
             this.btnAddArticle.Text = "Добавить";
             this.btnAddArticle.UseVisualStyleBackColor = true;
+            this.btnAddArticle.Click += new System.EventHandler(this.btnAddArticle_Click);
             // 
             // label3
             // 

@@ -17,7 +17,7 @@ namespace CostAccounting.Forms.Menu
     {
         //свойство для определения, не закрывается ли форма
         private bool FormIsClosed { get; set; } = false;
-        List<SaldoModel> saldosModel = new List<SaldoModel>();
+        List<SaldoModel> saldosModel = new List<SaldoModel>();  //список, для заполнения таблицы; модель сальдо на начало периода
         List<Saldo> saldos = new List<Saldo>();
 
         public FormAddSaldoBegin()
@@ -99,23 +99,54 @@ namespace CostAccounting.Forms.Menu
         }
 
         private void btnAddAnalytic_Click(object sender, EventArgs e)
+        {           
+
+            if (SaldoEntities.FindEntryRefInSaldoStartingPeriod((int)cmbRefAnalytics.SelectedValue, null))  //выполняем поиск уже добавленной аналитики, проверка на дубль
+                MessageBox.Show("Такая аналитика уже добавлена!");
+            else
+            {
+                Saldo saldo = new Saldo();
+                try
+                {
+                    saldo.Type = (int)Dictionary.TypeSaldo.saldoStartingPeriod;
+                    saldo.Sum = txtSumAnalytic.Text == "" ? 0 : Convert.ToDouble(txtSumAnalytic.Text);
+                    saldo.IdAnalytic = (int)cmbRefAnalytics.SelectedValue;
+                    Config.db.Saldo.Add(saldo);
+                    Config.db.SaveChanges();
+
+                    saldosModel.Add(new SaldoModel(saldo.Analytics.Name, (double)saldo.Sum));
+                    FillTable();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }                       
+        }
+
+        private void btnAddArticle_Click(object sender, EventArgs e)
         {
-            Saldo saldo = new Saldo();
-
-            try
+            if (SaldoEntities.FindEntryRefInSaldoStartingPeriod(null, (int)cmbRefArticles.SelectedValue))   //выполняем поиск уже добавленной статьи, проверка на дубль
+                MessageBox.Show("Такая статья уже добавлена!");
+            else
             {
-                saldo.Type = (int)Dictionary.TypeSaldo.saldoStartingPeriod;
-                saldo.Sum = txtSumAnalytic.Text == "" ? 0 : Convert.ToDouble(txtSumAnalytic.Text);
-                saldo.IdAnalytic = (int)cmbRefAnalytics.SelectedValue;
-                Config.db.Saldo.Add(saldo);
-                Config.db.SaveChanges();
+                Saldo saldo = new Saldo();
 
-                saldosModel.Add(new SaldoModel(saldo.Analytics.Name, (double)saldo.Sum));
-                FillTable();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                try
+                {
+                    saldo.Type = (int)Dictionary.TypeSaldo.saldoStartingPeriod;
+                    saldo.Sum = txtSumArticle.Text == "" ? 0 : Convert.ToDouble(txtSumArticle.Text);
+                    saldo.IdArticle = (int)cmbRefArticles.SelectedValue;
+                    Config.db.Saldo.Add(saldo);
+                    Config.db.SaveChanges();
+
+                    saldosModel.Add(new SaldoModel(saldo.Articles.Name, (double)saldo.Sum));
+                    FillTable();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }            
         }
     }
