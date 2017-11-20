@@ -35,19 +35,18 @@ namespace CostAccounting.Forms.Menu
         private void FormAddSaldoBegin_Load(object sender, EventArgs e)
         {
             saldos = SaldoEntities.GetSaldosStartingPeriod();
+
             if(saldos.Count != 0)
             {
-                SaldoModel saldoModel = new SaldoModel();
-                foreach(Saldo saldo in saldos)
+                foreach (Saldo saldo in saldos)
                 {
                     if (saldo.IdAnalytic != null)
-                        saldoModel.Name = saldo.Analytics.Name;
+                        saldosModel.Add(new SaldoModel(saldo.Analytics.Name, (double)saldo.Sum));
                     if (saldo.IdArticle != null)
-                        saldoModel.Name = saldo.Articles.Name;
-
-                    saldoModel.Sum = (double)saldo.Sum;
-                    saldosModel.Add(saldoModel);
+                        saldosModel.Add(new SaldoModel(saldo.Articles.Name, (double)saldo.Sum));
                 }
+
+                FillTable();
             }
 
         }
@@ -94,21 +93,30 @@ namespace CostAccounting.Forms.Menu
             FormIsClosed = true;
         }
 
+        private void FillTable()
+        {
+            dgwSaldoBegin.DataSource = saldosModel.ToList();
+        }
+
         private void btnAddAnalytic_Click(object sender, EventArgs e)
         {
             Saldo saldo = new Saldo();
-            saldo.Type = (int)Dictionary.TypeSaldo.saldoStartingPeriod;
-            saldo.Sum = Convert.ToDouble(txtSumAnalytic.Text);
-            saldo.IdAnalytic = (int)cmbRefAnalytics.SelectedValue;
+
             try
             {
+                saldo.Type = (int)Dictionary.TypeSaldo.saldoStartingPeriod;
+                saldo.Sum = txtSumAnalytic.Text == "" ? 0 : Convert.ToDouble(txtSumAnalytic.Text);
+                saldo.IdAnalytic = (int)cmbRefAnalytics.SelectedValue;
                 Config.db.Saldo.Add(saldo);
                 Config.db.SaveChanges();
+
+                saldosModel.Add(new SaldoModel(saldo.Analytics.Name, (double)saldo.Sum));
+                FillTable();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            }            
         }
     }
 }
