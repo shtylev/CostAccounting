@@ -41,6 +41,8 @@
             this.cmbRefArticles = new System.Windows.Forms.ComboBox();
             this.txtSumArticle = new System.Windows.Forms.TextBox();
             this.dgwSaldoBegin = new System.Windows.Forms.DataGridView();
+            this.NameRef = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Sum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBoxAnalytics.SuspendLayout();
             this.groupBoxArticles.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgwSaldoBegin)).BeginInit();
@@ -171,18 +173,36 @@
             this.dgwSaldoBegin.AllowUserToDeleteRows = false;
             this.dgwSaldoBegin.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dgwSaldoBegin.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgwSaldoBegin.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.NameRef,
+            this.Sum});
             this.dgwSaldoBegin.Location = new System.Drawing.Point(364, 12);
             this.dgwSaldoBegin.MultiSelect = false;
             this.dgwSaldoBegin.Name = "dgwSaldoBegin";
             this.dgwSaldoBegin.ReadOnly = true;
-            this.dgwSaldoBegin.Size = new System.Drawing.Size(246, 300);
+            this.dgwSaldoBegin.Size = new System.Drawing.Size(296, 300);
             this.dgwSaldoBegin.TabIndex = 6;
+            // 
+            // NameRef
+            // 
+            this.NameRef.DataPropertyName = "Name";
+            this.NameRef.HeaderText = "Название";
+            this.NameRef.Name = "NameRef";
+            this.NameRef.ReadOnly = true;
+            this.NameRef.Width = 150;
+            // 
+            // Sum
+            // 
+            this.Sum.DataPropertyName = "Sum";
+            this.Sum.HeaderText = "Сумма";
+            this.Sum.Name = "Sum";
+            this.Sum.ReadOnly = true;
             // 
             // FormAddSaldoBegin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(619, 332);
+            this.ClientSize = new System.Drawing.Size(671, 332);
             this.Controls.Add(this.dgwSaldoBegin);
             this.Controls.Add(this.groupBoxArticles);
             this.Controls.Add(this.groupBoxAnalytics);
@@ -218,5 +238,7 @@
         private System.Windows.Forms.ComboBox cmbRefArticles;
         private System.Windows.Forms.TextBox txtSumArticle;
         private System.Windows.Forms.DataGridView dgwSaldoBegin;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NameRef;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Sum;
     }
 }
