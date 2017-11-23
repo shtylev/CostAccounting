@@ -22,7 +22,7 @@ namespace CostAccounting.DAL
         /// </summary>
         /// <param name="idArticle">id статьи</param>
         /// <returns></returns>
-        public static Articles GetArticle(int idArticle)
+        public static Articles GetArticleById(int idArticle)
         {
             return Config.db.Articles.Where(i => i.Id == idArticle).FirstOrDefault();
         }
@@ -56,7 +56,7 @@ namespace CostAccounting.DAL
         /// <returns></returns>
         public static string RenameArticle(string newName, int idArticle)
         {
-            Articles article = GetArticle(idArticle);
+            Articles article = GetArticleById(idArticle);
             try
             {
                 article.Name = newName;
@@ -75,7 +75,7 @@ namespace CostAccounting.DAL
         /// <returns></returns>
         public static string AddArticleToArchive(int idArticle)
         {
-            Articles article = GetArticle(idArticle);
+            Articles article = GetArticleById(idArticle);
             try
             {
                 article.Active = false;
@@ -102,7 +102,7 @@ namespace CostAccounting.DAL
         /// <returns></returns>
         public static string RemoveFromArchive(int idArticle)
         {
-            Articles article = GetArticle(idArticle);
+            Articles article = GetArticleById(idArticle);
 
             try
             {
