@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.cmbRefAnalytics = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtSumAnalytic = new System.Windows.Forms.TextBox();
@@ -41,11 +42,17 @@
             this.cmbRefArticles = new System.Windows.Forms.ComboBox();
             this.txtSumArticle = new System.Windows.Forms.TextBox();
             this.dgwSaldoBegin = new System.Windows.Forms.DataGridView();
+            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ContextMenuItemDeleteRef = new System.Windows.Forms.ToolStripMenuItem();
             this.NameRef = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Sum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idAnalytic = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idArticle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBoxAnalytics.SuspendLayout();
             this.groupBoxArticles.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgwSaldoBegin)).BeginInit();
+            this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // cmbRefAnalytics
@@ -176,13 +183,31 @@
             this.dgwSaldoBegin.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgwSaldoBegin.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.NameRef,
-            this.Sum});
+            this.Sum,
+            this.idAnalytic,
+            this.idArticle,
+            this.Id});
+            this.dgwSaldoBegin.ContextMenuStrip = this.contextMenuStrip;
             this.dgwSaldoBegin.Location = new System.Drawing.Point(364, 12);
             this.dgwSaldoBegin.MultiSelect = false;
             this.dgwSaldoBegin.Name = "dgwSaldoBegin";
             this.dgwSaldoBegin.ReadOnly = true;
             this.dgwSaldoBegin.Size = new System.Drawing.Size(296, 300);
             this.dgwSaldoBegin.TabIndex = 6;
+            // 
+            // contextMenuStrip
+            // 
+            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ContextMenuItemDeleteRef});
+            this.contextMenuStrip.Name = "contextMenuStrip";
+            this.contextMenuStrip.Size = new System.Drawing.Size(188, 26);
+            // 
+            // ContextMenuItemDeleteRef
+            // 
+            this.ContextMenuItemDeleteRef.Name = "ContextMenuItemDeleteRef";
+            this.ContextMenuItemDeleteRef.Size = new System.Drawing.Size(187, 22);
+            this.ContextMenuItemDeleteRef.Text = "Удалить справочник";
+            this.ContextMenuItemDeleteRef.Click += new System.EventHandler(this.ContextMenuItemDeleteRef_Click);
             // 
             // NameRef
             // 
@@ -198,6 +223,30 @@
             this.Sum.HeaderText = "Сумма";
             this.Sum.Name = "Sum";
             this.Sum.ReadOnly = true;
+            // 
+            // idAnalytic
+            // 
+            this.idAnalytic.DataPropertyName = "IdAnalytic";
+            this.idAnalytic.HeaderText = "IdAnalytic";
+            this.idAnalytic.Name = "idAnalytic";
+            this.idAnalytic.ReadOnly = true;
+            this.idAnalytic.Visible = false;
+            // 
+            // idArticle
+            // 
+            this.idArticle.DataPropertyName = "IdArticle";
+            this.idArticle.HeaderText = "IdArticle";
+            this.idArticle.Name = "idArticle";
+            this.idArticle.ReadOnly = true;
+            this.idArticle.Visible = false;
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Visible = false;
             // 
             // FormAddSaldoBegin
             // 
@@ -220,6 +269,7 @@
             this.groupBoxArticles.ResumeLayout(false);
             this.groupBoxArticles.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgwSaldoBegin)).EndInit();
+            this.contextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -239,7 +289,12 @@
         private System.Windows.Forms.ComboBox cmbRefArticles;
         private System.Windows.Forms.TextBox txtSumArticle;
         private System.Windows.Forms.DataGridView dgwSaldoBegin;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem ContextMenuItemDeleteRef;
         private System.Windows.Forms.DataGridViewTextBoxColumn NameRef;
         private System.Windows.Forms.DataGridViewTextBoxColumn Sum;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idAnalytic;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idArticle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
     }
 }
