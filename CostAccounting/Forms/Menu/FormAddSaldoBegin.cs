@@ -41,9 +41,9 @@ namespace CostAccounting.Forms.Menu
                 foreach (Saldo saldo in saldos)
                 {
                     if (saldo.IdAnalytic != null)
-                        saldosModel.Add(new SaldoModel(saldo.Analytics.Name, (double)saldo.Sum));
+                        saldosModel.Add(new SaldoModel(saldo.Analytics.Name, (double)saldo.Sum, null, saldo.IdAnalytic, saldo.Id));
                     if (saldo.IdArticle != null)
-                        saldosModel.Add(new SaldoModel(saldo.Articles.Name, (double)saldo.Sum));
+                        saldosModel.Add(new SaldoModel(saldo.Articles.Name, (double)saldo.Sum, saldo.IdArticle, null, saldo.Id));
                 }
 
                 FillTable();
@@ -101,7 +101,7 @@ namespace CostAccounting.Forms.Menu
         private void btnAddAnalytic_Click(object sender, EventArgs e)
         {           
 
-            if (SaldoEntities.FindEntryRefInSaldoStartingPeriod((int)cmbRefAnalytics.SelectedValue, null))  //выполняем поиск уже добавленной аналитики, проверка на дубль
+            if (SaldoEntities.FindEntryRefInSaldoStartingPeriodById((int)cmbRefAnalytics.SelectedValue, null))  //выполняем поиск уже добавленной аналитики, проверка на дубль
                 MessageBox.Show("Такая аналитика уже добавлена!");
             else
             {
@@ -114,7 +114,7 @@ namespace CostAccounting.Forms.Menu
                     Config.db.Saldo.Add(saldo);
                     Config.db.SaveChanges();
 
-                    saldosModel.Add(new SaldoModel(saldo.Analytics.Name, (double)saldo.Sum));
+                    saldosModel.Add(new SaldoModel(saldo.Analytics.Name, (double)saldo.Sum, null, saldo.IdAnalytic, saldo.Id));
                     FillTable();
                 }
                 catch (Exception ex)
@@ -126,7 +126,7 @@ namespace CostAccounting.Forms.Menu
 
         private void btnAddArticle_Click(object sender, EventArgs e)
         {
-            if (SaldoEntities.FindEntryRefInSaldoStartingPeriod(null, (int)cmbRefArticles.SelectedValue))   //выполняем поиск уже добавленной статьи, проверка на дубль
+            if (SaldoEntities.FindEntryRefInSaldoStartingPeriodById(null, (int)cmbRefArticles.SelectedValue))   //выполняем поиск уже добавленной статьи, проверка на дубль
                 MessageBox.Show("Такая статья уже добавлена!");
             else
             {
@@ -140,7 +140,7 @@ namespace CostAccounting.Forms.Menu
                     Config.db.Saldo.Add(saldo);
                     Config.db.SaveChanges();
 
-                    saldosModel.Add(new SaldoModel(saldo.Articles.Name, (double)saldo.Sum));
+                    saldosModel.Add(new SaldoModel(saldo.Articles.Name, (double)saldo.Sum, saldo.IdArticle, null, saldo.Id));
                     FillTable();
                 }
                 catch (Exception ex)
@@ -148,6 +148,28 @@ namespace CostAccounting.Forms.Menu
                     MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }            
+        }
+
+        private void ContextMenuItemDeleteRef_Click(object sender, EventArgs e)
+        {
+            if (dgwSaldoBegin.SelectedRows.Count != 0)
+            {
+                SaldoModel selectedSaldo = (SaldoModel)dgwSaldoBegin.SelectedRows[0].DataBoundItem;
+
+                //удалить из бд
+                string result = SaldoEntities.DeleteSaldo(selectedSaldo.Id);
+
+                if (result == Resources.OK)
+                {
+                    //удалить из модели
+                    saldosModel.Remove(selectedSaldo);
+                    FillTable();
+                }
+                else
+                    MessageBox.Show(result, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+                MessageBox.Show("Не выбрана строка справочника.");
         }
     }
 }
