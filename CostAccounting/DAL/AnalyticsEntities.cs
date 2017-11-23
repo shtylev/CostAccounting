@@ -22,7 +22,7 @@ namespace CostAccounting.DAL
         /// </summary>
         /// <param name="idAnalytic">id аналитики</param>
         /// <returns></returns>
-        public static Analytics GetAnalytic(int idAnalytic)
+        public static Analytics GetAnalyticById(int idAnalytic)
         {
             return Config.db.Analytics.Where(i => i.Id == idAnalytic).FirstOrDefault();
         }
@@ -55,7 +55,7 @@ namespace CostAccounting.DAL
         /// <returns></returns>
         public static string RenameAnalytic(string newName, int idAnalytic)
         {
-            Analytics analytic = GetAnalytic(idAnalytic);
+            Analytics analytic = GetAnalyticById(idAnalytic);
             try
             {
                 analytic.Name = newName;
@@ -74,7 +74,7 @@ namespace CostAccounting.DAL
         /// <returns></returns>
         public static string AddAnalyticToArchive(int idAnalytic)
         {
-            Analytics analytic = GetAnalytic(idAnalytic);
+            Analytics analytic = GetAnalyticById(idAnalytic);
             try
             {
                 analytic.Active = false;
@@ -101,7 +101,7 @@ namespace CostAccounting.DAL
         /// <returns></returns>
         public static string RemoveFromArchive(int idAnalytic)
         {
-            Analytics analytic = GetAnalytic(idAnalytic);
+            Analytics analytic = GetAnalyticById(idAnalytic);
 
             try
             {
