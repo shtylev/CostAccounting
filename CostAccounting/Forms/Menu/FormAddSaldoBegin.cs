@@ -35,7 +35,7 @@ namespace CostAccounting.Forms.Menu
         private void FormAddSaldoBegin_Load(object sender, EventArgs e)
         {
             saldos = SaldoEntities.GetSaldosStartingPeriod();
-
+            
             if(saldos.Count != 0)
             {
                 foreach (Saldo saldo in saldos)
@@ -109,7 +109,7 @@ namespace CostAccounting.Forms.Menu
                 try
                 {
                     saldo.Type = (int)Dictionary.TypeSaldo.saldoStartingPeriod;
-                    saldo.Sum = txtSumAnalytic.Text == "" ? 0 : Convert.ToDouble(txtSumAnalytic.Text);
+                    saldo.Sum = txtSumAnalytic.Text == "" ? 0 : Math.Round(Convert.ToDouble(txtSumAnalytic.Text), 2);
                     saldo.IdAnalytic = (int)cmbRefAnalytics.SelectedValue;
                     Config.db.Saldo.Add(saldo);
                     Config.db.SaveChanges();
@@ -135,7 +135,7 @@ namespace CostAccounting.Forms.Menu
                 try
                 {
                     saldo.Type = (int)Dictionary.TypeSaldo.saldoStartingPeriod;
-                    saldo.Sum = txtSumArticle.Text == "" ? 0 : Convert.ToDouble(txtSumArticle.Text);
+                    saldo.Sum = txtSumArticle.Text == "" ? 0 : Math.Round(Convert.ToDouble(txtSumArticle.Text), 2);
                     saldo.IdArticle = (int)cmbRefArticles.SelectedValue;
                     Config.db.Saldo.Add(saldo);
                     Config.db.SaveChanges();

@@ -9,7 +9,18 @@ namespace CostAccounting.Model
     public class SaldoModel
     {
         public string Name { get; set; }
-        public double Sum { get; set; }
+
+        private double _sum;
+        public double Sum {
+            get
+            {
+                return _sum;
+            }
+            set
+            {
+                _sum = Math.Round(value, 2);
+            }
+        }
         public int? IdArticle { get; set; }
         public int? IdAnalytic { get; set; }
         public int Id { get; set; }
