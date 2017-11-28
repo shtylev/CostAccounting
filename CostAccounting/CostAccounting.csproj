@@ -77,6 +77,7 @@
   <ItemGroup>
     <Compile Include="DAL\AnalyticsEntities.cs" />
     <Compile Include="DAL\ArticlesEntities.cs" />
+    <Compile Include="DAL\ComboBoxEntities.cs" />
     <Compile Include="DAL\Config.cs" />
     <Compile Include="DAL\Dictionary.cs" />
     <Compile Include="DAL\Resources.Designer.cs">

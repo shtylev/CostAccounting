@@ -25,8 +25,8 @@ namespace CostAccounting.Forms.Menu
             InitializeComponent();
 
             //заполняем комбобоксы
-            FillComboBox(cmbRefAnalytics, AnalyticsEntities.GetAnalytics());
-            FillComboBox(cmbRefArticles, ArticlesEntities.GetArticles());
+            ComboBoxEntities.FillComboBox(cmbRefAnalytics, AnalyticsEntities.GetAnalytics());
+            ComboBoxEntities.FillComboBox(cmbRefArticles, ArticlesEntities.GetArticles());
 
             txtSumAnalytic.LostFocus += new EventHandler(txtSumAnalytic_LostFocus);
             txtSumArticle.LostFocus += new EventHandler(txtSumArticle_LostFocus);
@@ -49,19 +49,6 @@ namespace CostAccounting.Forms.Menu
                 FillTable();
             }
 
-        }
-        /// <summary>
-        /// Заполняет элемент ComboBox
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="cmb"></param>
-        /// <param name="reference"></param>
-        void FillComboBox<T>(ComboBox cmb, List<T> reference)
-        {
-            cmb.DataSource = reference;
-            cmb.DisplayMember = "Name";
-            cmb.ValueMember = "Id";
-            cmb.AutoCompleteCustomSource = (reference as AutoCompleteStringCollection); //включаем автозаполнение, AutoCompleteMode и AutoCompleteSource
         }
         /// <summary>
         /// Проверяет введенное значение, в текстовом поле, на число
