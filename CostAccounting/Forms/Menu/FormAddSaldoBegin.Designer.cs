@@ -42,13 +42,13 @@
             this.cmbRefArticles = new System.Windows.Forms.ComboBox();
             this.txtSumArticle = new System.Windows.Forms.TextBox();
             this.dgwSaldoBegin = new System.Windows.Forms.DataGridView();
-            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.ContextMenuItemDeleteRef = new System.Windows.Forms.ToolStripMenuItem();
             this.NameRef = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Sum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idAnalytic = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idArticle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ContextMenuItemDeleteRef = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBoxAnalytics.SuspendLayout();
             this.groupBoxArticles.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgwSaldoBegin)).BeginInit();
@@ -195,20 +195,6 @@
             this.dgwSaldoBegin.Size = new System.Drawing.Size(296, 300);
             this.dgwSaldoBegin.TabIndex = 6;
             // 
-            // contextMenuStrip
-            // 
-            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ContextMenuItemDeleteRef});
-            this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(188, 26);
-            // 
-            // ContextMenuItemDeleteRef
-            // 
-            this.ContextMenuItemDeleteRef.Name = "ContextMenuItemDeleteRef";
-            this.ContextMenuItemDeleteRef.Size = new System.Drawing.Size(187, 22);
-            this.ContextMenuItemDeleteRef.Text = "Удалить справочник";
-            this.ContextMenuItemDeleteRef.Click += new System.EventHandler(this.ContextMenuItemDeleteRef_Click);
-            // 
             // NameRef
             // 
             this.NameRef.DataPropertyName = "Name";
@@ -247,6 +233,20 @@
             this.Id.Name = "Id";
             this.Id.ReadOnly = true;
             this.Id.Visible = false;
+            // 
+            // contextMenuStrip
+            // 
+            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ContextMenuItemDeleteRef});
+            this.contextMenuStrip.Name = "contextMenuStrip";
+            this.contextMenuStrip.Size = new System.Drawing.Size(119, 26);
+            // 
+            // ContextMenuItemDeleteRef
+            // 
+            this.ContextMenuItemDeleteRef.Name = "ContextMenuItemDeleteRef";
+            this.ContextMenuItemDeleteRef.Size = new System.Drawing.Size(118, 22);
+            this.ContextMenuItemDeleteRef.Text = "Удалить";
+            this.ContextMenuItemDeleteRef.Click += new System.EventHandler(this.ContextMenuItemDeleteRef_Click);
             // 
             // FormAddSaldoBegin
             // 
