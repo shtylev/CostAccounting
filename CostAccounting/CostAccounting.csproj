@@ -80,6 +80,7 @@
     <Compile Include="DAL\ComboBoxEntities.cs" />
     <Compile Include="DAL\Config.cs" />
     <Compile Include="DAL\Dictionary.cs" />
+    <Compile Include="DAL\NumbersValidation.cs" />
     <Compile Include="DAL\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
