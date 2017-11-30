@@ -14,16 +14,27 @@ namespace CostAccounting
 {
     public partial class formMain : Form
     {
-        FormReferences formReference = new FormReferences();
+        //свойство для определения, не закрывается ли форма
+        private bool FormIsClosed { get; set; } = false;
 
         public formMain()
         {
             InitializeComponent();
+
+            txtSumCost.LostFocus += new EventHandler(txtSumCost_LostFocus);
         }
 
         private void formMain_Load(object sender, EventArgs e)
         {
             
+        }
+        private void txtSumCost_LostFocus(object sender, EventArgs e)
+        {
+            if (!NumbersValidation.CheckForTheNumberDouble(txtSumCost.Text, FormIsClosed))
+            {
+                MessageBox.Show("Сумма расходов должна быть числом!");
+                txtSumCost.Focus();
+            }
         }
 
         private void menuItemAnalyticsReference_Click(object sender, EventArgs e)
@@ -37,7 +48,8 @@ namespace CostAccounting
         }
 
         private void ShowFormReference(string typeReference)
-        {            
+        {       
+            FormReferences formReference = new FormReferences();
             formReference.lblTypeReference.Text = typeReference;
             formReference.ShowDialog();
         }
@@ -51,6 +63,11 @@ namespace CostAccounting
         {
             FormAddSaldoBegin formAddSaldoBegin = new FormAddSaldoBegin();
             formAddSaldoBegin.ShowDialog();
+        }        
+
+        private void formMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            FormIsClosed = true;
         }
     }
 }
