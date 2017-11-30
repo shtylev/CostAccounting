@@ -50,29 +50,21 @@ namespace CostAccounting.Forms.Menu
             }
 
         }
-        /// <summary>
-        /// Проверяет введенное значение, в текстовом поле, на число
-        /// </summary>
-        /// <param name="txtBox">Текстовое поле, в которое вводится значение</param>
-        void CheckForTheNumber(TextBox txtBox)
-        {            
-            double sum = 0;
-            if (txtBox.Text != "" && !FormIsClosed) //проверка на закрытие формы необходима для того, чтобы не получать данную ошибку, постоянно, если в txt поле ошибочное значение, когда закрывают форму
-            {
-                if (!double.TryParse(txtBox.Text, out sum))
-                {
-                    MessageBox.Show("Сумма должна быть числом! Используйте точку, для копеек.");
-                    txtBox.Focus();
-                }
-            }            
-        }
         private void txtSumAnalytic_LostFocus(object sender, EventArgs e)
         {
-            CheckForTheNumber(txtSumAnalytic);
+            if(!NumbersValidation.CheckForTheNumberDouble(txtSumAnalytic.Text, FormIsClosed))
+            {
+                MessageBox.Show("Сумма должна быть числом!");
+                txtSumAnalytic.Focus();
+            }            
         }
         private void txtSumArticle_LostFocus(object sender, EventArgs e)
         {
-            CheckForTheNumber(txtSumArticle);
+            if (!NumbersValidation.CheckForTheNumberDouble(txtSumArticle.Text, FormIsClosed))
+            {
+                MessageBox.Show("Сумма должна быть числом!");
+                txtSumAnalytic.Focus();
+            }
         }
 
         private void FormAddSaldoBegin_FormClosing(object sender, FormClosingEventArgs e)
@@ -96,7 +88,7 @@ namespace CostAccounting.Forms.Menu
                 try
                 {
                     saldo.Type = (int)Dictionary.TypeSaldo.saldoStartingPeriod;
-                    saldo.Sum = txtSumAnalytic.Text == "" ? 0 : Math.Round(Convert.ToDouble(txtSumAnalytic.Text), 2);
+                    saldo.Sum = txtSumAnalytic.Text == "" ? 0 : Math.Round(Convert.ToDouble(txtSumAnalytic.Text.Replace(",", ".")), 2);
                     saldo.IdAnalytic = (int)cmbRefAnalytics.SelectedValue;
                     Config.db.Saldo.Add(saldo);
                     Config.db.SaveChanges();
@@ -122,7 +114,7 @@ namespace CostAccounting.Forms.Menu
                 try
                 {
                     saldo.Type = (int)Dictionary.TypeSaldo.saldoStartingPeriod;
-                    saldo.Sum = txtSumArticle.Text == "" ? 0 : Math.Round(Convert.ToDouble(txtSumArticle.Text), 2);
+                    saldo.Sum = txtSumArticle.Text == "" ? 0 : Math.Round(Convert.ToDouble(txtSumArticle.Text.Replace(",", ".")), 2);
                     saldo.IdArticle = (int)cmbRefArticles.SelectedValue;
                     Config.db.Saldo.Add(saldo);
                     Config.db.SaveChanges();
