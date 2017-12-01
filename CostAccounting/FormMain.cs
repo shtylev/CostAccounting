@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CostAccounting.Forms.Menu;
 using CostAccounting.DAL;
+using CostAccounting.Model_Data;
 
 namespace CostAccounting
 {
@@ -26,7 +27,8 @@ namespace CostAccounting
 
         private void formMain_Load(object sender, EventArgs e)
         {
-            
+            ComboBoxEntities.FillComboBox(cmbCostsAnalytics, AnalyticsEntities.GetAnalytics());
+            ComboBoxEntities.FillComboBox(cmbCostsArticles, ArticlesEntities.GetArticles());
         }
         private void txtSumCost_LostFocus(object sender, EventArgs e)
         {
@@ -68,6 +70,28 @@ namespace CostAccounting
         private void formMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             FormIsClosed = true;
+        }
+
+        private void btnAddCost_Click(object sender, EventArgs e)
+        {
+            Costs cost = new Costs();
+
+            try
+            {
+                cost.IdAnalytic = (int)cmbCostsAnalytics.SelectedValue;
+                cost.IdArticle = (int)cmbCostsArticles.SelectedValue;
+                cost.Sum = txtSumCost.Text == "" ? 0 : Math.Round(Convert.ToDouble(txtSumCost.Text.Replace(",", ".")), 2);
+                cost.Message = txtCostMessage.Text == "" ? null : txtCostMessage.Text;
+                cost.Date = dtpCostDate.Value.Date;
+                Config.db.Costs.Add(cost);
+                Config.db.SaveChanges();
+
+                dataGridView1.DataSource = CostsEntities.GetCosts();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }            
         }
     }
 }
