@@ -15,7 +15,7 @@ namespace CostAccounting.DAL
         /// <returns></returns>
         public static List<Saldo> GetSaldosStartingPeriod()
         {
-            return Config.db.Saldo.Where(t => t.Type == (int)Dictionary.TypeSaldo.saldoStartingPeriod).ToList();
+            return Config.db.Saldo.Where(t => t.Type == (int)References.TypeSaldo.startingPeriod).ToList();
         }
         /// <summary>
         /// Выполняет поиск справочника в сальдо на начало периода
@@ -29,7 +29,7 @@ namespace CostAccounting.DAL
 
             if (idAnalytic != null)
             {
-                saldo = Config.db.Saldo.Where(t => t.Type == (int)Dictionary.TypeSaldo.saldoStartingPeriod).Where(i => i.IdAnalytic == idAnalytic).FirstOrDefault();
+                saldo = Config.db.Saldo.Where(t => t.Type == (int)References.TypeSaldo.startingPeriod).Where(i => i.IdAnalytic == idAnalytic).FirstOrDefault();
 
                 if (saldo != null)
                     return true;
@@ -37,7 +37,7 @@ namespace CostAccounting.DAL
 
             if (idArticle != null)
             {
-                saldo = Config.db.Saldo.Where(t => t.Type == (int)Dictionary.TypeSaldo.saldoStartingPeriod).Where(i => i.IdArticle == idArticle).FirstOrDefault();
+                saldo = Config.db.Saldo.Where(t => t.Type == (int)References.TypeSaldo.startingPeriod).Where(i => i.IdArticle == idArticle).FirstOrDefault();
 
                 if (saldo != null)
                     return true;
@@ -79,6 +79,34 @@ namespace CostAccounting.DAL
             }
 
             return "Найти сальдо не удалось.";
+        }
+        /// <summary>
+        /// Возвращает общую сумму, для аналитики или статьи
+        /// </summary>
+        /// <param name="idAnalytic"></param>
+        /// <param name="idArticle"></param>
+        /// <returns></returns>
+        public static double GetTotalSumForSaldoEndPeriod(int? idAnalytic, int? idArticle)
+        {
+            Saldo saldo = new Saldo();
+
+            if(idAnalytic != null)
+            {
+                saldo = Config.db.Saldo.Where(i => i.IdAnalytic == idAnalytic).Where(t => t.Type == (int)References.TypeSaldo.totalSumForEndPeriod).FirstOrDefault();
+
+                if(saldo != null)
+                    return (double)saldo.Sum;
+            }
+
+            if(idArticle != null)
+            {
+                saldo = Config.db.Saldo.Where(i => i.IdArticle == idArticle).Where(t => t.Type == (int)References.TypeSaldo.totalSumForEndPeriod).FirstOrDefault();
+
+                if (saldo != null)
+                    return (double)saldo.Sum;
+            }
+
+            return 0;
         }
     }
 }
