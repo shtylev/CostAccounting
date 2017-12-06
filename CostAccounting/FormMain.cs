@@ -78,13 +78,19 @@ namespace CostAccounting
 
             try
             {
+                //добавляем расход в таблицу
                 cost.IdAnalytic = (int)cmbCostsAnalytics.SelectedValue;
                 cost.IdArticle = (int)cmbCostsArticles.SelectedValue;
                 cost.Sum = txtSumCost.Text == "" ? 0 : Math.Round(Convert.ToDouble(txtSumCost.Text.Replace(",", ".")), 2);
                 cost.Message = txtCostMessage.Text == "" ? null : txtCostMessage.Text;
                 cost.Date = dtpCostDate.Value.Date;
                 Config.db.Costs.Add(cost);
-                Config.db.SaveChanges();
+                //Config.db.SaveChanges();
+
+                //прибавление суммы к общей сумме сальдо на конец периода
+                
+
+                //если нет общей суммы в сальдо на конец периода добавляемой в расходы аналитики, то создавать
 
                 dataGridView1.DataSource = CostsEntities.GetCosts();
             }
