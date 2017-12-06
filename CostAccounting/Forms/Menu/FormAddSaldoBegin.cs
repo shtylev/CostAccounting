@@ -84,16 +84,25 @@ namespace CostAccounting.Forms.Menu
                 MessageBox.Show("Такая аналитика уже добавлена!");
             else
             {
-                Saldo saldo = new Saldo();
+                Saldo saldoStartPeriod = new Saldo();
+                Saldo saldoEndPeriod = new Saldo();
                 try
                 {
-                    saldo.Type = (int)Dictionary.TypeSaldo.saldoStartingPeriod;
-                    saldo.Sum = txtSumAnalytic.Text == "" ? 0 : Math.Round(Convert.ToDouble(txtSumAnalytic.Text.Replace(",", ".")), 2);
-                    saldo.IdAnalytic = (int)cmbRefAnalytics.SelectedValue;
-                    Config.db.Saldo.Add(saldo);
+                    //добавляем сальдо на начало периода
+                    saldoStartPeriod.Type = (int)References.TypeSaldo.startingPeriod;
+                    saldoStartPeriod.Sum = txtSumAnalytic.Text == "" ? 0 : Math.Round(Convert.ToDouble(txtSumAnalytic.Text.Replace(",", ".")), 2);
+                    saldoStartPeriod.IdAnalytic = (int)cmbRefAnalytics.SelectedValue;
+                    Config.db.Saldo.Add(saldoStartPeriod);
+
+                    //сразу же делаем сальдо на конец периода. Таким образом сальдо на начало и на конец всегда будут равны
+                    saldoEndPeriod.Type = (int)References.TypeSaldo.endPeriod;
+                    saldoEndPeriod.Sum = saldoStartPeriod.Sum + SaldoEntities.GetTotalSumForSaldoEndPeriod((int)cmbRefAnalytics.SelectedValue, null);
+                    saldoEndPeriod.IdAnalytic = (int)cmbRefAnalytics.SelectedValue;
+                    Config.db.Saldo.Add(saldoEndPeriod);
+
                     Config.db.SaveChanges();
 
-                    saldosModel.Add(new SaldoModel(saldo.Analytics.Name, (double)saldo.Sum, null, saldo.IdAnalytic, saldo.Id));
+                    saldosModel.Add(new SaldoModel(saldoStartPeriod.Analytics.Name, (double)saldoStartPeriod.Sum, null, saldoStartPeriod.IdAnalytic, saldoStartPeriod.Id));
                     FillTable();
                 }
                 catch (Exception ex)
@@ -109,17 +118,26 @@ namespace CostAccounting.Forms.Menu
                 MessageBox.Show("Такая статья уже добавлена!");
             else
             {
-                Saldo saldo = new Saldo();
+                Saldo saldoStartPeriod = new Saldo();
+                Saldo saldoEndPeriod = new Saldo();
 
                 try
                 {
-                    saldo.Type = (int)Dictionary.TypeSaldo.saldoStartingPeriod;
-                    saldo.Sum = txtSumArticle.Text == "" ? 0 : Math.Round(Convert.ToDouble(txtSumArticle.Text.Replace(",", ".")), 2);
-                    saldo.IdArticle = (int)cmbRefArticles.SelectedValue;
-                    Config.db.Saldo.Add(saldo);
+                    //добавляем сальдо на начало периода
+                    saldoStartPeriod.Type = (int)References.TypeSaldo.startingPeriod;
+                    saldoStartPeriod.Sum = txtSumArticle.Text == "" ? 0 : Math.Round(Convert.ToDouble(txtSumArticle.Text.Replace(",", ".")), 2);
+                    saldoStartPeriod.IdArticle = (int)cmbRefArticles.SelectedValue;
+                    Config.db.Saldo.Add(saldoStartPeriod);
+
+                    //сразу же делаем сальдо на конец периода. Таким образом сальдо на начало и на конец всегда будут равны
+                    saldoEndPeriod.Type = (int)References.TypeSaldo.endPeriod;
+                    saldoEndPeriod.Sum = saldoStartPeriod.Sum + SaldoEntities.GetTotalSumForSaldoEndPeriod(null, (int)cmbRefArticles.SelectedValue);
+                    saldoEndPeriod.IdArticle = (int)cmbRefArticles.SelectedValue;
+                    Config.db.Saldo.Add(saldoEndPeriod);
+
                     Config.db.SaveChanges();
 
-                    saldosModel.Add(new SaldoModel(saldo.Articles.Name, (double)saldo.Sum, saldo.IdArticle, null, saldo.Id));
+                    saldosModel.Add(new SaldoModel(saldoStartPeriod.Articles.Name, (double)saldoStartPeriod.Sum, saldoStartPeriod.IdArticle, null, saldoStartPeriod.Id));
                     FillTable();
                 }
                 catch (Exception ex)
