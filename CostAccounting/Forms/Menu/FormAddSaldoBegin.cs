@@ -131,7 +131,10 @@ namespace CostAccounting.Forms.Menu
 
                     //сразу же делаем сальдо на конец периода. Таким образом сальдо на начало и на конец всегда будут равны
                     saldoEndPeriod.Type = (int)References.TypeSaldo.endPeriod;
-                    saldoEndPeriod.Sum = saldoStartPeriod.Sum + SaldoEntities.GetTotalSumForSaldoEndPeriod(null, (int)cmbRefArticles.SelectedValue);
+
+                    double totalSum = SaldoEntities.GetTotalSumForSaldoEndPeriod(null, (int)cmbRefArticles.SelectedValue);
+                    saldoEndPeriod.Sum = totalSum >= 0 ? saldoStartPeriod.Sum - totalSum : saldoStartPeriod.Sum + totalSum;
+
                     saldoEndPeriod.IdArticle = (int)cmbRefArticles.SelectedValue;
                     Config.db.Saldo.Add(saldoEndPeriod);
 
@@ -154,7 +157,11 @@ namespace CostAccounting.Forms.Menu
                 SaldoModel selectedSaldo = (SaldoModel)dgwSaldoBegin.SelectedRows[0].DataBoundItem;
 
                 //удалить из бд
-                string result = SaldoEntities.DeleteSaldo(selectedSaldo.Id);
+                string result = "";
+                if(selectedSaldo.IdAnalytic != null)
+                    result = SaldoEntities.DeleteSaldo(selectedSaldo.Id, selectedSaldo.IdAnalytic, null);
+                if(selectedSaldo.IdArticle != null)
+                    result = SaldoEntities.DeleteSaldo(selectedSaldo.Id, null, selectedSaldo.IdArticle);
 
                 if (result == Resources.OK)
                 {
