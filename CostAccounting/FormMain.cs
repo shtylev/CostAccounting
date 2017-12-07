@@ -88,9 +88,8 @@ namespace CostAccounting
                 //Config.db.SaveChanges();
 
                 //прибавление суммы к общей сумме сальдо на конец периода
-                
+                //если нет общей суммы, то создавать
 
-                //если нет общей суммы в сальдо на конец периода добавляемой в расходы аналитики, то создавать
 
                 dataGridView1.DataSource = CostsEntities.GetCosts();
             }
