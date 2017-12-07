@@ -81,6 +81,57 @@ namespace CostAccounting.DAL
             return "Найти сальдо не удалось.";
         }
         /// <summary>
+        /// Удаляет сальдо, вместе с сальдо на конец периода, по ид аналитики или статьи
+        /// </summary>
+        /// <param name="idSaldo"></param>
+        /// <param name="idAnalytic"></param>
+        /// <param name="idArticle"></param>
+        /// <returns></returns>
+        public static string DeleteSaldo(int idSaldo, int? idAnalytic, int? idArticle)
+        {
+            Saldo saldo = GetSaldoById(idSaldo);
+            Saldo saldoEndPeriod = null;
+
+            if (idAnalytic != null)
+                saldoEndPeriod = GetSaldoEndPeriod(idAnalytic, null);
+            if (idArticle != null)
+                saldoEndPeriod = GetSaldoEndPeriod(null, idArticle);
+
+            if (saldo != null && saldoEndPeriod != null)
+            {
+                try
+                {
+                    Config.db.Saldo.Remove(saldo);
+                    Config.db.Saldo.Remove(saldoEndPeriod);
+                    Config.db.SaveChanges();
+
+                    return Resources.OK;
+                }
+                catch (Exception ex)
+                {
+                    return ex.Message;
+                }
+            }
+
+            return "Найти сальдо не удалось.";
+        }
+        /// <summary>
+        /// Ищет сальдо на конец периода
+        /// </summary>
+        /// <param name="idAnalytic"></param>
+        /// <param name="idArticle"></param>
+        /// <returns></returns>
+        public static Saldo GetSaldoEndPeriod(int? idAnalytic, int? idArticle)
+        {
+            if (idAnalytic != null)
+                return Config.db.Saldo.Where(i => i.IdAnalytic == idAnalytic).Where(t => t.Type == (int)References.TypeSaldo.endPeriod).FirstOrDefault();
+
+            if (idArticle != null)
+                return Config.db.Saldo.Where(i => i.IdArticle == idArticle).Where(t => t.Type == (int)References.TypeSaldo.endPeriod).FirstOrDefault();
+
+            return null;
+        }
+        /// <summary>
         /// Возвращает общую сумму, для аналитики или статьи
         /// </summary>
         /// <param name="idAnalytic"></param>
