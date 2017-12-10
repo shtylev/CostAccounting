@@ -47,9 +47,19 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cmbCostsAnalytics = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvSaldoEndPeriod = new System.Windows.Forms.DataGridView();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnUpdateSaldoEndPeriod = new System.Windows.Forms.Button();
+            this.NameRef = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Sum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idAnalytic = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idArticle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuMain.SuspendLayout();
             this.groupBoxCosts.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSaldoEndPeriod)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuMain
@@ -220,11 +230,90 @@
             this.dataGridView1.Size = new System.Drawing.Size(804, 150);
             this.dataGridView1.TabIndex = 2;
             // 
+            // dgvSaldoEndPeriod
+            // 
+            this.dgvSaldoEndPeriod.AllowUserToAddRows = false;
+            this.dgvSaldoEndPeriod.AllowUserToDeleteRows = false;
+            this.dgvSaldoEndPeriod.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
+            this.dgvSaldoEndPeriod.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSaldoEndPeriod.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.NameRef,
+            this.Sum,
+            this.idAnalytic,
+            this.idArticle,
+            this.Id});
+            this.dgvSaldoEndPeriod.Location = new System.Drawing.Point(8, 26);
+            this.dgvSaldoEndPeriod.Name = "dgvSaldoEndPeriod";
+            this.dgvSaldoEndPeriod.ReadOnly = true;
+            this.dgvSaldoEndPeriod.Size = new System.Drawing.Size(296, 300);
+            this.dgvSaldoEndPeriod.TabIndex = 3;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnUpdateSaldoEndPeriod);
+            this.groupBox1.Controls.Add(this.dgvSaldoEndPeriod);
+            this.groupBox1.Location = new System.Drawing.Point(1046, 27);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(312, 371);
+            this.groupBox1.TabIndex = 4;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Сальдо на конец периода";
+            // 
+            // btnUpdateSaldoEndPeriod
+            // 
+            this.btnUpdateSaldoEndPeriod.Location = new System.Drawing.Point(8, 333);
+            this.btnUpdateSaldoEndPeriod.Name = "btnUpdateSaldoEndPeriod";
+            this.btnUpdateSaldoEndPeriod.Size = new System.Drawing.Size(87, 29);
+            this.btnUpdateSaldoEndPeriod.TabIndex = 4;
+            this.btnUpdateSaldoEndPeriod.Text = "Обновить";
+            this.btnUpdateSaldoEndPeriod.UseVisualStyleBackColor = true;
+            this.btnUpdateSaldoEndPeriod.Click += new System.EventHandler(this.btnUpdateSaldoEndPeriod_Click);
+            // 
+            // NameRef
+            // 
+            this.NameRef.DataPropertyName = "Name";
+            this.NameRef.HeaderText = "Название";
+            this.NameRef.Name = "NameRef";
+            this.NameRef.ReadOnly = true;
+            this.NameRef.Width = 150;
+            // 
+            // Sum
+            // 
+            this.Sum.DataPropertyName = "Sum";
+            this.Sum.HeaderText = "Сумма";
+            this.Sum.Name = "Sum";
+            this.Sum.ReadOnly = true;
+            // 
+            // idAnalytic
+            // 
+            this.idAnalytic.DataPropertyName = "IdAnalytic";
+            this.idAnalytic.HeaderText = "idAnalytic";
+            this.idAnalytic.Name = "idAnalytic";
+            this.idAnalytic.ReadOnly = true;
+            this.idAnalytic.Visible = false;
+            // 
+            // idArticle
+            // 
+            this.idArticle.DataPropertyName = "IdArticle";
+            this.idArticle.HeaderText = "idArticle";
+            this.idArticle.Name = "idArticle";
+            this.idArticle.ReadOnly = true;
+            this.idArticle.Visible = false;
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Visible = false;
+            // 
             // formMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1864, 822);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.groupBoxCosts);
             this.Controls.Add(this.menuMain);
@@ -244,6 +333,8 @@
             this.groupBoxCosts.ResumeLayout(false);
             this.groupBoxCosts.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSaldoEndPeriod)).EndInit();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -269,6 +360,14 @@
         private System.Windows.Forms.TextBox txtSumCost;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvSaldoEndPeriod;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button btnUpdateSaldoEndPeriod;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NameRef;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Sum;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idAnalytic;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idArticle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
     }
 }
 
