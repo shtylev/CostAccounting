@@ -75,28 +75,64 @@ namespace CostAccounting
         private void btnAddCost_Click(object sender, EventArgs e)
         {
             Costs cost = new Costs();
+            int idAnalytic = (int)cmbCostsAnalytics.SelectedValue;
+            int idArticle = (int)cmbCostsArticles.SelectedValue;
+            int typeSaldoTotalSum = (int)References.TypeSaldo.totalSumForEndPeriod;
+            double sumCost = txtSumCost.Text == "" ? 0 : Math.Round(Convert.ToDouble(txtSumCost.Text.Replace(",", ".")), 2);
 
-            try
+            if (sumCost != 0)
             {
-                //добавляем расход в таблицу
-                cost.IdAnalytic = (int)cmbCostsAnalytics.SelectedValue;
-                cost.IdArticle = (int)cmbCostsArticles.SelectedValue;
-                cost.Sum = txtSumCost.Text == "" ? 0 : Math.Round(Convert.ToDouble(txtSumCost.Text.Replace(",", ".")), 2);
-                cost.Message = txtCostMessage.Text == "" ? null : txtCostMessage.Text;
-                cost.Date = dtpCostDate.Value.Date;
-                Config.db.Costs.Add(cost);
-                //Config.db.SaveChanges();
+                try
+                {
+                    //добавляем расход в таблицу
+                    cost.IdAnalytic = idAnalytic;
+                    cost.IdArticle = idArticle;
+                    cost.Sum = sumCost;
+                    cost.Message = txtCostMessage.Text == "" ? null : txtCostMessage.Text;
+                    cost.Date = dtpCostDate.Value.Date;
+                    Config.db.Costs.Add(cost);
 
-                //прибавление суммы к общей сумме сальдо на конец периода
-                //если нет общей суммы, то создавать
+                    //прибавление суммы расхода к общей сумме сальдо
+                    Saldo saldoTotalSumArticle = SaldoEntities.GetSaldoTotalSumForEndPeriod(null, idArticle);
+                    Saldo saldoTotalSumAnalytic = SaldoEntities.GetSaldoTotalSumForEndPeriod(idAnalytic, null);
 
+                    //обрабатываем общую сумму по аналитике
+                    if (saldoTotalSumAnalytic != null)
+                        saldoTotalSumAnalytic.Sum += sumCost;
+                    else
+                    {
+                        //если нет общей суммы, то создавать
+                        saldoTotalSumAnalytic = new Saldo();
+                        saldoTotalSumAnalytic.Type = typeSaldoTotalSum;
+                        saldoTotalSumAnalytic.IdAnalytic = idAnalytic;
+                        saldoTotalSumAnalytic.Sum = sumCost;
+                        Config.db.Saldo.Add(saldoTotalSumAnalytic);
+                    }
 
-                dataGridView1.DataSource = CostsEntities.GetCosts();
+                    //обрабатываем общую сумму по статье
+                    if (saldoTotalSumArticle != null)
+                        saldoTotalSumArticle.Sum += sumCost;
+                    else
+                    {
+                        //если нет общей суммы, то создавать
+                        saldoTotalSumArticle = new Saldo();
+                        saldoTotalSumArticle.Type = typeSaldoTotalSum;
+                        saldoTotalSumArticle.IdArticle = idArticle;
+                        saldoTotalSumArticle.Sum = sumCost;
+                        Config.db.Saldo.Add(saldoTotalSumArticle);
+                    }
+
+                    Config.db.SaveChanges();
+
+                    dataGridView1.DataSource = CostsEntities.GetCosts();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }            
+            else
+                MessageBox.Show("Вы добавляете нулевой расход! Одумайтесь! Зачем?");                        
         }
     }
 }
