@@ -100,10 +100,12 @@ namespace CostAccounting
                     //прибавление суммы расхода к общей сумме сальдо
                     Saldo saldoTotalSumArticle = SaldoEntities.GetSaldoTotalSumForEndPeriod(null, idArticle);
                     Saldo saldoTotalSumAnalytic = SaldoEntities.GetSaldoTotalSumForEndPeriod(idAnalytic, null);
-
+                    
                     //обрабатываем общую сумму по аналитике
                     if (saldoTotalSumAnalytic != null)
+                    {
                         saldoTotalSumAnalytic.Sum += sumCost;
+                    }
                     else
                     {
                         //если нет общей суммы, то создавать
@@ -112,7 +114,7 @@ namespace CostAccounting
                         saldoTotalSumAnalytic.IdAnalytic = idAnalytic;
                         saldoTotalSumAnalytic.Sum = sumCost;
                         Config.db.Saldo.Add(saldoTotalSumAnalytic);
-                    }
+                    }                    
 
                     //обрабатываем общую сумму по статье
                     if (saldoTotalSumArticle != null)
@@ -126,6 +128,17 @@ namespace CostAccounting
                         saldoTotalSumArticle.Sum = sumCost;
                         Config.db.Saldo.Add(saldoTotalSumArticle);
                     }
+
+                    //реализовать изменение сумм у сальдо на конец периода
+                    //найти сальдо на конец периода
+                    Saldo saldoEndPeriodAnalytic = SaldoEntities.GetSaldoEndPeriod(idAnalytic, null);
+                    Saldo saldoEndPeriodArticle = SaldoEntities.GetSaldoEndPeriod(null, idArticle);
+
+                    //если есть, то прибавить/отнять сумму этого сальдо с суммой расхода
+                    if (saldoEndPeriodAnalytic != null)
+                        saldoEndPeriodAnalytic.Sum += sumCost;
+                    if (saldoEndPeriodArticle != null)
+                        saldoEndPeriodArticle.Sum -= sumCost;
 
                     Config.db.SaveChanges();
 
