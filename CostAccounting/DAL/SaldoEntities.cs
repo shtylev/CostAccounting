@@ -132,7 +132,7 @@ namespace CostAccounting.DAL
             return null;
         }
         /// <summary>
-        /// Возвращает общую сумму, для аналитики или статьи
+        /// Возвращает общую сумму, по ид аналитики или статьи
         /// </summary>
         /// <param name="idAnalytic"></param>
         /// <param name="idArticle"></param>
@@ -158,6 +158,34 @@ namespace CostAccounting.DAL
             }
 
             return 0;
+        }
+        /// <summary>
+        /// Возвращает сальдо общей суммы, по ид аналитики или статьи
+        /// </summary>
+        /// <param name="idAnalytic"></param>
+        /// <param name="idArticle"></param>
+        /// <returns></returns>
+        public static Saldo GetSaldoTotalSumForEndPeriod(int? idAnalytic, int? idArticle)
+        {
+            Saldo saldo = new Saldo();
+
+            if (idAnalytic != null)
+            {
+                saldo = Config.db.Saldo.Where(i => i.IdAnalytic == idAnalytic).Where(t => t.Type == (int)References.TypeSaldo.totalSumForEndPeriod).FirstOrDefault();
+
+                if (saldo != null)
+                    return saldo;
+            }
+
+            if (idArticle != null)
+            {
+                saldo = Config.db.Saldo.Where(i => i.IdArticle == idArticle).Where(t => t.Type == (int)References.TypeSaldo.totalSumForEndPeriod).FirstOrDefault();
+
+                if (saldo != null)
+                    return saldo;
+            }
+
+            return null;
         }
     }
 }
