@@ -133,7 +133,8 @@ namespace CostAccounting.Forms.Menu
                     saldoEndPeriod.Type = (int)References.TypeSaldo.endPeriod;
 
                     double totalSum = SaldoEntities.GetTotalSumForSaldoEndPeriod(null, (int)cmbRefArticles.SelectedValue);
-                    saldoEndPeriod.Sum = totalSum >= 0 && saldoStartPeriod.Sum > 0 ? saldoStartPeriod.Sum - totalSum : saldoStartPeriod.Sum + totalSum;
+                    saldoEndPeriod.Sum = saldoStartPeriod.Sum - totalSum;
+                    //saldoEndPeriod.Sum = totalSum >= 0 && saldoStartPeriod.Sum > 0 ? saldoStartPeriod.Sum - totalSum : saldoStartPeriod.Sum + totalSum;
 
                     saldoEndPeriod.IdArticle = (int)cmbRefArticles.SelectedValue;
                     Config.db.Saldo.Add(saldoEndPeriod);
