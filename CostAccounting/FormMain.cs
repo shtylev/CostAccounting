@@ -10,13 +10,15 @@ using System.Windows.Forms;
 using CostAccounting.Forms.Menu;
 using CostAccounting.DAL;
 using CostAccounting.Model_Data;
+using CostAccounting.Model;
 
 namespace CostAccounting
 {
     public partial class formMain : Form
-    {
-        //свойство для определения, не закрывается ли форма
-        private bool FormIsClosed { get; set; } = false;
+    {        
+        private bool FormIsClosed { get; set; } = false;    //свойство для определения, не закрывается ли форма
+        List<SaldoModel> saldosModelEndPeriod = new List<SaldoModel>();  //список, для заполнения таблицы; модель сальдо на конец периода
+        List<Saldo> saldosEndPeriod = new List<Saldo>();
 
         public formMain()
         {
@@ -29,6 +31,9 @@ namespace CostAccounting
         {
             ComboBoxEntities.FillComboBox(cmbCostsAnalytics, AnalyticsEntities.GetAnalytics());
             ComboBoxEntities.FillComboBox(cmbCostsArticles, ArticlesEntities.GetArticles());
+
+            FillSaldoModelEndPeriod();
+            FillTableSaldoEndPeriod();
         }
         private void txtSumCost_LostFocus(object sender, EventArgs e)
         {
@@ -133,6 +138,34 @@ namespace CostAccounting
             }
             else
                 MessageBox.Show("Вы добавляете нулевой расход! Одумайтесь! Зачем?");                        
+        }
+
+        private void btnUpdateSaldoEndPeriod_Click(object sender, EventArgs e)
+        {
+            FillSaldoModelEndPeriod();
+            FillTableSaldoEndPeriod();
+        }
+        void FillTableSaldoEndPeriod()
+        {
+            dgvSaldoEndPeriod.DataSource = saldosModelEndPeriod.ToList();
+        }
+        void FillSaldoModelEndPeriod()
+        {
+            saldosEndPeriod.Clear();
+            saldosEndPeriod = SaldoEntities.GetSaldosEndPeriod();
+
+            if(saldosEndPeriod.Count != 0)
+            {
+                saldosModelEndPeriod.Clear();
+
+                foreach (Saldo saldoEndPeriod in saldosEndPeriod)
+                {
+                    if (saldoEndPeriod.IdAnalytic != null)
+                        saldosModelEndPeriod.Add(new SaldoModel(saldoEndPeriod.Analytics.Name, (double)saldoEndPeriod.Sum, null, saldoEndPeriod.IdAnalytic, saldoEndPeriod.Id));
+                    if (saldoEndPeriod.IdArticle != null)
+                        saldosModelEndPeriod.Add(new SaldoModel(saldoEndPeriod.Articles.Name, (double)saldoEndPeriod.Sum, saldoEndPeriod.IdArticle, null, saldoEndPeriod.Id));
+                }
+            }            
         }
     }
 }
