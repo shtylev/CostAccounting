@@ -132,6 +132,14 @@ namespace CostAccounting.DAL
             return null;
         }
         /// <summary>
+        /// Получает список сальдо на конец периода
+        /// </summary>
+        /// <returns></returns>
+        public static List<Saldo> GetSaldosEndPeriod()
+        {
+            return Config.db.Saldo.Where(t => t.Type == (int)References.TypeSaldo.endPeriod).ToList();
+        }
+        /// <summary>
         /// Возвращает общую сумму, по ид аналитики или статьи
         /// </summary>
         /// <param name="idAnalytic"></param>
