@@ -25,6 +25,10 @@ namespace CostAccounting.Model
         public int? IdAnalytic { get; set; }
         public int Id { get; set; }
 
+        public SaldoModel()
+        {
+
+        }
         public SaldoModel(string name, double sum, int? idArticle, int? idAnalytic, int id)
         {
             Name = name;
