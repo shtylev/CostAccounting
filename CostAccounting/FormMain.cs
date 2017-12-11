@@ -32,8 +32,16 @@ namespace CostAccounting
             ComboBoxEntities.FillComboBox(cmbCostsAnalytics, AnalyticsEntities.GetAnalytics());
             ComboBoxEntities.FillComboBox(cmbCostsArticles, ArticlesEntities.GetArticles());
 
+            //заполняем сальдо на конец периода
             FillSaldoModelEndPeriod();
             FillTableSaldoEndPeriod();
+
+            //для даты свода с, устанавливаем дату меньшую на 6 месяцев от текущей
+            dtpSvodDateFrom.Value = DateTime.Now.AddMonths(-6);
+
+            //устанавливаем формат отображения дат в виде "дек.17"
+            dtpSvodDateFrom.CustomFormat = "MMM.yy";
+            dtpSvodDateTo.CustomFormat =  "MMM.yy";
         }
         private void txtSumCost_LostFocus(object sender, EventArgs e)
         {
@@ -142,7 +150,8 @@ namespace CostAccounting
 
                     Config.db.SaveChanges();
 
-                    dataGridView1.DataSource = CostsEntities.GetCosts();
+                    FillSaldoModelEndPeriod();
+                    FillTableSaldoEndPeriod();
                 }
                 catch (Exception ex)
                 {
@@ -156,7 +165,7 @@ namespace CostAccounting
         private void btnUpdateSaldoEndPeriod_Click(object sender, EventArgs e)
         {
             FillSaldoModelEndPeriod();
-            FillTableSaldoEndPeriod();
+            FillTableSaldoEndPeriod();            
         }
         void FillTableSaldoEndPeriod()
         {
@@ -179,6 +188,16 @@ namespace CostAccounting
                         saldosModelEndPeriod.Add(new SaldoModel(saldoEndPeriod.Articles.Name, (double)saldoEndPeriod.Sum, saldoEndPeriod.IdArticle, null, saldoEndPeriod.Id));
                 }
             }            
+        }
+
+        private void btnUpdateSvod_Click(object sender, EventArgs e)
+        {
+            //проверяем, не больше ли дата начала даты конца
+            if (dtpSvodDateFrom.Value > dtpSvodDateTo.Value)
+                MessageBox.Show("Дата начала не может быть больше даты конца!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            //DateTime bla = new DateTime((dtpSvodDateTo.Value - dtpSvodDateFrom.Value).Ticks);
+            //var bla2 = bla.Month;
         }
     }
 }
