@@ -1,4 +1,8 @@
-﻿using System;
+﻿using CostAccounting.DAL;
+using CostAccounting.Forms.Menu;
+using CostAccounting.Model;
+using CostAccounting.Model_Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,10 +11,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using CostAccounting.Forms.Menu;
-using CostAccounting.DAL;
-using CostAccounting.Model_Data;
-using CostAccounting.Model;
 
 namespace CostAccounting
 {
@@ -42,6 +42,8 @@ namespace CostAccounting
             //устанавливаем формат отображения дат в виде "дек.17"
             dtpSvodDateFrom.CustomFormat = "MMM.yy";
             dtpSvodDateTo.CustomFormat =  "MMM.yy";
+
+            FillTableSvod();
         }
         private void txtSumCost_LostFocus(object sender, EventArgs e)
         {
@@ -196,8 +198,39 @@ namespace CostAccounting
             if (dtpSvodDateFrom.Value > dtpSvodDateTo.Value)
                 MessageBox.Show("Дата начала не может быть больше даты конца!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
+            FillTableSvod();
+        }
+        void FillTableSvod()
+        {
+            dgvSvod.Rows.Clear();
+            dgvSvod.Columns.Clear();
+
+            dgvSvod.Columns.Add("Article", "Статья");
+
             //DateTime bla = new DateTime((dtpSvodDateTo.Value - dtpSvodDateFrom.Value).Ticks);
             //var bla2 = bla.Month;
+
+            #region добавляем столбцы
+            string dateFrom = dtpSvodDateFrom.Value.Month.ToString() + dtpSvodDateFrom.Value.Year.ToString();
+            string dateTo = dtpSvodDateTo.Value.Month.ToString() + dtpSvodDateTo.Value.Year.ToString();
+            DateTime processedDate = dtpSvodDateFrom.Value;
+
+            while (dateFrom != dateTo)
+            {
+                dgvSvod.Columns.Add(processedDate.ToString("M.yy"), processedDate.ToString("MMM.yy"));
+
+                processedDate = processedDate.AddMonths(1);
+                dateFrom = processedDate.Month.ToString() + processedDate.Year.ToString();
+            }
+
+            //добавляем последний столбец
+            if (dateFrom == dateTo)
+            {
+                dgvSvod.Columns.Add(processedDate.ToString("M.yy"), processedDate.ToString("MMM.yy"));
+            }
+            #endregion
+
+
         }
     }
 }
