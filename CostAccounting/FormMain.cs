@@ -205,12 +205,12 @@ namespace CostAccounting
             dgvSvod.Rows.Clear();
             dgvSvod.Columns.Clear();
 
-            dgvSvod.Columns.Add("Article", "Статья");
-
             //DateTime bla = new DateTime((dtpSvodDateTo.Value - dtpSvodDateFrom.Value).Ticks);
             //var bla2 = bla.Month;
 
             #region добавляем столбцы
+            dgvSvod.Columns.Add("Article", "Статья");
+
             string dateFrom = dtpSvodDateFrom.Value.Month.ToString() + dtpSvodDateFrom.Value.Year.ToString();
             string dateTo = dtpSvodDateTo.Value.Month.ToString() + dtpSvodDateTo.Value.Year.ToString();
             DateTime processedDate = dtpSvodDateFrom.Value;
@@ -230,7 +230,9 @@ namespace CostAccounting
             }
             #endregion
 
+            #region добавляем строки
 
+            #endregion
         }
     }
 }
