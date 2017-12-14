@@ -89,6 +89,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="DAL\SaldoEntities.cs" />
+    <Compile Include="DAL\SvodEntities.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
