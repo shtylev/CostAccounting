@@ -202,6 +202,8 @@ namespace CostAccounting
         }
         void FillTableSvod()
         {
+            List<Articles> articles = ArticlesEntities.GetArticles();
+
             dgvSvod.Rows.Clear();
             dgvSvod.Columns.Clear();
 
@@ -217,7 +219,7 @@ namespace CostAccounting
 
             while (dateFrom != dateTo)
             {
-                dgvSvod.Columns.Add(processedDate.ToString("M.yy"), processedDate.ToString("MMM.yy"));
+                dgvSvod.Columns.Add(processedDate.ToString("dd.MM.yyyy"), processedDate.ToString("MMM.yy"));
 
                 processedDate = processedDate.AddMonths(1);
                 dateFrom = processedDate.Month.ToString() + processedDate.Year.ToString();
@@ -226,12 +228,25 @@ namespace CostAccounting
             //добавляем последний столбец
             if (dateFrom == dateTo)
             {
-                dgvSvod.Columns.Add(processedDate.ToString("M.yy"), processedDate.ToString("MMM.yy"));
+                dgvSvod.Columns.Add(processedDate.ToString("dd.MM.yyyy"), processedDate.ToString("MMM.yy"));
             }
             #endregion
 
             #region добавляем строки
-
+            for(int indexRows = 0; indexRows < articles.Count; indexRows++)
+            {
+                dgvSvod.Rows.Add();
+                foreach (DataGridViewTextBoxColumn columnSvod in dgvSvod.Columns)
+                {
+                    if(columnSvod.Name == "Article")
+                        dgvSvod.Rows[indexRows].Cells[columnSvod.Name].Value = articles[indexRows].Name;
+                    else
+                    {
+                        DateTime nameColumn = Convert.ToDateTime(columnSvod.Name);
+                        dgvSvod.Rows[indexRows].Cells[columnSvod.Name].Value = SvodEntities.GetSumForMonthArticle(articles[indexRows].Id, nameColumn.Month, nameColumn.Year);
+                    }
+                }
+            }            
             #endregion
         }
     }
