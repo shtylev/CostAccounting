@@ -56,9 +56,9 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnUpdateSaldoEndPeriod = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.dtpSvodDateFrom = new System.Windows.Forms.DateTimePicker();
-            this.dtpSvodDateTo = new System.Windows.Forms.DateTimePicker();
             this.btnUpdateSvod = new System.Windows.Forms.Button();
+            this.dtpSvodDateTo = new System.Windows.Forms.DateTimePicker();
+            this.dtpSvodDateFrom = new System.Windows.Forms.DateTimePicker();
             this.menuMain.SuspendLayout();
             this.groupBoxCosts.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSvod)).BeginInit();
@@ -236,7 +236,7 @@
             this.dgvSvod.Location = new System.Drawing.Point(10, 56);
             this.dgvSvod.Name = "dgvSvod";
             this.dgvSvod.ReadOnly = true;
-            this.dgvSvod.Size = new System.Drawing.Size(994, 457);
+            this.dgvSvod.Size = new System.Drawing.Size(994, 281);
             this.dgvSvod.TabIndex = 2;
             // 
             // dgvSaldoEndPeriod
@@ -325,26 +325,10 @@
             this.groupBox2.Controls.Add(this.dgvSvod);
             this.groupBox2.Location = new System.Drawing.Point(13, 175);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1013, 519);
+            this.groupBox2.Size = new System.Drawing.Size(1013, 347);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Свод";
-            // 
-            // dtpSvodDateFrom
-            // 
-            this.dtpSvodDateFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpSvodDateFrom.Location = new System.Drawing.Point(10, 23);
-            this.dtpSvodDateFrom.Name = "dtpSvodDateFrom";
-            this.dtpSvodDateFrom.Size = new System.Drawing.Size(100, 23);
-            this.dtpSvodDateFrom.TabIndex = 3;
-            // 
-            // dtpSvodDateTo
-            // 
-            this.dtpSvodDateTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpSvodDateTo.Location = new System.Drawing.Point(129, 23);
-            this.dtpSvodDateTo.Name = "dtpSvodDateTo";
-            this.dtpSvodDateTo.Size = new System.Drawing.Size(100, 23);
-            this.dtpSvodDateTo.TabIndex = 4;
             // 
             // btnUpdateSvod
             // 
@@ -356,11 +340,27 @@
             this.btnUpdateSvod.UseVisualStyleBackColor = true;
             this.btnUpdateSvod.Click += new System.EventHandler(this.btnUpdateSvod_Click);
             // 
+            // dtpSvodDateTo
+            // 
+            this.dtpSvodDateTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpSvodDateTo.Location = new System.Drawing.Point(129, 23);
+            this.dtpSvodDateTo.Name = "dtpSvodDateTo";
+            this.dtpSvodDateTo.Size = new System.Drawing.Size(100, 23);
+            this.dtpSvodDateTo.TabIndex = 4;
+            // 
+            // dtpSvodDateFrom
+            // 
+            this.dtpSvodDateFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpSvodDateFrom.Location = new System.Drawing.Point(10, 23);
+            this.dtpSvodDateFrom.Name = "dtpSvodDateFrom";
+            this.dtpSvodDateFrom.Size = new System.Drawing.Size(100, 23);
+            this.dtpSvodDateFrom.TabIndex = 3;
+            // 
             // formMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1369, 822);
+            this.ClientSize = new System.Drawing.Size(1369, 531);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBoxCosts);
