@@ -25,6 +25,7 @@ namespace CostAccounting
             InitializeComponent();
 
             txtSumCost.LostFocus += new EventHandler(txtSumCost_LostFocus);
+            dgvSvod.CellMouseDoubleClick += new DataGridViewCellMouseEventHandler(dgvSvod_CellMouseDoubleClick);
         }
 
         private void formMain_Load(object sender, EventArgs e)
@@ -207,10 +208,9 @@ namespace CostAccounting
             dgvSvod.Rows.Clear();
             dgvSvod.Columns.Clear();
 
-            //DateTime bla = new DateTime((dtpSvodDateTo.Value - dtpSvodDateFrom.Value).Ticks);
-            //var bla2 = bla.Month;
-
             #region добавляем столбцы
+            dgvSvod.Columns.Add("IdArticle", "IdArticle");
+            dgvSvod.Columns[0].Visible = false; //столбец Id невидимым
             dgvSvod.Columns.Add("Article", "Статья");
 
             string dateFrom = dtpSvodDateFrom.Value.Month.ToString() + dtpSvodDateFrom.Value.Year.ToString();
@@ -239,29 +239,44 @@ namespace CostAccounting
                 foreach (DataGridViewTextBoxColumn columnSvod in dgvSvod.Columns)
                 {
                     //добавляем ячейки для названия статьи
-                    if(columnSvod.Name == "Article")
+                    switch (columnSvod.Name)
                     {
-                        if(indexRows != articles.Count)
-                            dgvSvod.Rows[indexRows].Cells[columnSvod.Name].Value = articles[indexRows].Name;
-                        else
-                            dgvSvod.Rows[indexRows].Cells[columnSvod.Name].Value = "Общие расходы";
-                    }
-                    else
-                    {
-                        //добавляем ячейки для сумм
-                        DateTime nameColumn = Convert.ToDateTime(columnSvod.Name);
-                        if (indexRows != articles.Count)
-                        {
-                            dgvSvod.Rows[indexRows].Cells[columnSvod.Name].Value = SvodEntities.GetSumForMonthArticle(articles[indexRows].Id, nameColumn.Month, nameColumn.Year);
-                        }
-                        else
-                        {
-                            dgvSvod.Rows[indexRows].Cells[columnSvod.Name].Value = SvodEntities.GetTotalSumForMonth(nameColumn.Month, nameColumn.Year);
-                        }                 
+                        case "IdArticle":
+                            if (indexRows != articles.Count)
+                                dgvSvod.Rows[indexRows].Cells[columnSvod.Name].Value = articles[indexRows].Id;  //id статьи
+                            else
+                                dgvSvod.Rows[indexRows].Cells[columnSvod.Name].Value = 0;   //последняя строка для общих расходов
+                            break;
+                        case "Article":
+                            if (indexRows != articles.Count)
+                                dgvSvod.Rows[indexRows].Cells[columnSvod.Name].Value = articles[indexRows].Name;    //имя статьи
+                            else
+                                dgvSvod.Rows[indexRows].Cells[columnSvod.Name].Value = "Общие расходы"; //последняя строка
+                            break;
+                        default:
+                            //добавляем ячейки для сумм
+                            DateTime nameColumn = Convert.ToDateTime(columnSvod.Name);
+                            if (indexRows != articles.Count)
+                            {
+                                dgvSvod.Rows[indexRows].Cells[columnSvod.Name].Value = SvodEntities.GetSumForMonthArticle(articles[indexRows].Id, nameColumn.Month, nameColumn.Year);
+                            }
+                            else
+                            {
+                                dgvSvod.Rows[indexRows].Cells[columnSvod.Name].Value = SvodEntities.GetTotalSumForMonth(nameColumn.Month, nameColumn.Year);
+                            }
+                            break;
                     }
                 }
             }            
             #endregion
+        }
+
+        void dgvSvod_CellMouseDoubleClick(Object sender, DataGridViewCellMouseEventArgs e)
+        {
+
+            DateTime monthCosts = Convert.ToDateTime((sender as DataGridView).Columns[e.ColumnIndex].Name); //получаем имя столбца
+            int idArticle = (int)(sender as DataGridView).Rows[e.RowIndex].Cells[0].Value;  //получаем id статьи из первой ячейки
+            
         }
     }
 }
