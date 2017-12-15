@@ -28,5 +28,9 @@ namespace CostAccounting.DAL
             }
             return 0;
         }
+        public static int GetTotalSumForMonth(int month, int year)
+        {
+            return Convert.ToInt32(Math.Round(CostsEntities.GetTotalSumForMonth(month, year), 0));
+        }
     }
 }
