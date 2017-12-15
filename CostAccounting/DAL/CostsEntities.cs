@@ -24,5 +24,20 @@ namespace CostAccounting.DAL
         {
             return Config.db.Costs.Where(i => i.IdArticle == idArticle).Where(dm => dm.Date.Month == month).Where(dy => dy.Date.Year == year).ToList();
         }
+        /// <summary>
+        /// Возвращает общую сумму расходов по всем статьям, за месяц
+        /// </summary>
+        /// <param name="month"></param>
+        /// <param name="year"></param>
+        /// <returns></returns>
+        public static double GetTotalSumForMonth(int month, int year)
+        {
+            List<Costs> costs = Config.db.Costs.Where(dm => dm.Date.Month == month).Where(dy => dy.Date.Year == year).ToList();
+
+            if (costs.Count != 0)
+                return costs.Sum(s => s.Sum);
+
+            return 0;
+        }
     }
 }
