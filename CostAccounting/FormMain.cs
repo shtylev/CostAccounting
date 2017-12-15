@@ -233,17 +233,31 @@ namespace CostAccounting
             #endregion
 
             #region добавляем строки
-            for(int indexRows = 0; indexRows < articles.Count; indexRows++)
+            for (int indexRows = 0; indexRows <= articles.Count; indexRows++)
             {
                 dgvSvod.Rows.Add();
                 foreach (DataGridViewTextBoxColumn columnSvod in dgvSvod.Columns)
                 {
+                    //добавляем ячейки для названия статьи
                     if(columnSvod.Name == "Article")
-                        dgvSvod.Rows[indexRows].Cells[columnSvod.Name].Value = articles[indexRows].Name;
+                    {
+                        if(indexRows != articles.Count)
+                            dgvSvod.Rows[indexRows].Cells[columnSvod.Name].Value = articles[indexRows].Name;
+                        else
+                            dgvSvod.Rows[indexRows].Cells[columnSvod.Name].Value = "Общие расходы";
+                    }
                     else
                     {
+                        //добавляем ячейки для сумм
                         DateTime nameColumn = Convert.ToDateTime(columnSvod.Name);
-                        dgvSvod.Rows[indexRows].Cells[columnSvod.Name].Value = SvodEntities.GetSumForMonthArticle(articles[indexRows].Id, nameColumn.Month, nameColumn.Year);
+                        if (indexRows != articles.Count)
+                        {
+                            dgvSvod.Rows[indexRows].Cells[columnSvod.Name].Value = SvodEntities.GetSumForMonthArticle(articles[indexRows].Id, nameColumn.Month, nameColumn.Year);
+                        }
+                        else
+                        {
+                            dgvSvod.Rows[indexRows].Cells[columnSvod.Name].Value = SvodEntities.GetTotalSumForMonth(nameColumn.Month, nameColumn.Year);
+                        }                 
                     }
                 }
             }            
