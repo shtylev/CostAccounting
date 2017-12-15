@@ -238,7 +238,7 @@ namespace CostAccounting
                 dgvSvod.Rows.Add();
                 foreach (DataGridViewTextBoxColumn columnSvod in dgvSvod.Columns)
                 {
-                    //добавляем ячейки для названия статьи
+                    //добавляем ячейки
                     switch (columnSvod.Name)
                     {
                         case "IdArticle":
