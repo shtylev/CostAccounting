@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CostAccounting.Forms;
 
 namespace CostAccounting
 {
@@ -30,8 +31,8 @@ namespace CostAccounting
 
         private void formMain_Load(object sender, EventArgs e)
         {
-            ComboBoxEntities.FillComboBox(cmbCostsAnalytics, AnalyticsEntities.GetAnalytics());
-            ComboBoxEntities.FillComboBox(cmbCostsArticles, ArticlesEntities.GetArticles());
+            ListBoxEntities.FillComboBox(cmbCostsAnalytics, AnalyticsEntities.GetAnalytics());
+            ListBoxEntities.FillComboBox(cmbCostsArticles, ArticlesEntities.GetArticles());
 
             //заполняем сальдо на конец периода
             FillSaldoModelEndPeriod();
@@ -277,7 +278,17 @@ namespace CostAccounting
 
             DateTime monthCosts = Convert.ToDateTime((sender as DataGridView).Columns[e.ColumnIndex].Name); //получаем имя столбца
             int idArticle = (int)(sender as DataGridView).Rows[e.RowIndex].Cells[0].Value;  //получаем id статьи из первой ячейки
-            
+
+            FormCosts formCosts = new FormCosts();
+
+            DateTime dateCostFrom = new DateTime(monthCosts.Year, monthCosts.Month, 1); //получаем начальную дату месяца
+            DateTime dateCostTo = dateCostFrom.AddMonths(1).AddDays(-1);    //получаем последнюю дату месяца
+
+            formCosts.DateCostFrom = dateCostFrom;
+            formCosts.DateCostTo = dateCostTo;
+            formCosts.IdArticle = idArticle;
+
+            formCosts.ShowDialog();
         }
     }
 }
