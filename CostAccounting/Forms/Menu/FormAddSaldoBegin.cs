@@ -25,8 +25,8 @@ namespace CostAccounting.Forms.Menu
             InitializeComponent();
 
             //заполняем комбобоксы
-            ComboBoxEntities.FillComboBox(cmbRefAnalytics, AnalyticsEntities.GetAnalytics());
-            ComboBoxEntities.FillComboBox(cmbRefArticles, ArticlesEntities.GetArticles());
+            ListBoxEntities.FillComboBox(cmbRefAnalytics, AnalyticsEntities.GetAnalytics());
+            ListBoxEntities.FillComboBox(cmbRefArticles, ArticlesEntities.GetArticles());
 
             txtSumAnalytic.LostFocus += new EventHandler(txtSumAnalytic_LostFocus);
             txtSumArticle.LostFocus += new EventHandler(txtSumArticle_LostFocus);

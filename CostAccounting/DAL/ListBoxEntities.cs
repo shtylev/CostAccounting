@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace CostAccounting.DAL
 {
-    public static class ComboBoxEntities
+    public static class ListBoxEntities
     {
         /// <summary>
         /// Заполняет элемент ComboBox
@@ -21,6 +21,12 @@ namespace CostAccounting.DAL
             cmb.DisplayMember = "Name";
             cmb.ValueMember = "Id";
             cmb.AutoCompleteCustomSource = (reference as AutoCompleteStringCollection); //включаем автозаполнение, AutoCompleteMode и AutoCompleteSource
+        }
+        public static void FillCheckedListBox<T>(CheckedListBox clb, List<T> reference)
+        {
+            ((ListBox)clb).DataSource = reference;
+            ((ListBox)clb).DisplayMember = "Name";
+            ((ListBox)clb).ValueMember = "Id";
         }
     }
 }
