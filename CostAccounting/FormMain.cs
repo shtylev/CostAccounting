@@ -155,6 +155,7 @@ namespace CostAccounting
 
                     FillSaldoModelEndPeriod();
                     FillTableSaldoEndPeriod();
+                    FillTableSvod();
                 }
                 catch (Exception ex)
                 {
