@@ -132,6 +132,7 @@
     <Compile Include="Forms\Menu\FormRenameRef.Designer.cs">
       <DependentUpon>FormRenameRef.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\CostModel.cs" />
     <Compile Include="Model\SaldoModel.cs" />
     <Compile Include="Model_Data\Analytics.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
