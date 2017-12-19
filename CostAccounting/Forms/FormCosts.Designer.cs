@@ -36,6 +36,12 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NameArticle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NameAnalytic = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Sum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Message = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCosts)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,10 +51,17 @@
             this.dgvCosts.AllowUserToDeleteRows = false;
             this.dgvCosts.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dgvCosts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCosts.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Id,
+            this.NameArticle,
+            this.NameAnalytic,
+            this.Date,
+            this.Sum,
+            this.Message});
             this.dgvCosts.Location = new System.Drawing.Point(13, 128);
             this.dgvCosts.Margin = new System.Windows.Forms.Padding(4);
             this.dgvCosts.Name = "dgvCosts";
-            this.dgvCosts.Size = new System.Drawing.Size(738, 293);
+            this.dgvCosts.Size = new System.Drawing.Size(746, 293);
             this.dgvCosts.TabIndex = 0;
             // 
             // dtpDateCostFrom
@@ -95,6 +108,7 @@
             this.btnUpdate.TabIndex = 5;
             this.btnUpdate.Text = "Обновить";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // label1
             // 
@@ -114,11 +128,54 @@
             this.label2.TabIndex = 7;
             this.label2.Text = "Статьи";
             // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Visible = false;
+            // 
+            // NameArticle
+            // 
+            this.NameArticle.DataPropertyName = "NameArticle";
+            this.NameArticle.HeaderText = "Статья";
+            this.NameArticle.Name = "NameArticle";
+            this.NameArticle.ReadOnly = true;
+            this.NameArticle.Width = 150;
+            // 
+            // NameAnalytic
+            // 
+            this.NameAnalytic.DataPropertyName = "NameAnalytic";
+            this.NameAnalytic.HeaderText = "Аналитика";
+            this.NameAnalytic.Name = "NameAnalytic";
+            this.NameAnalytic.ReadOnly = true;
+            this.NameAnalytic.Width = 150;
+            // 
+            // Date
+            // 
+            this.Date.DataPropertyName = "Date";
+            this.Date.HeaderText = "Дата";
+            this.Date.Name = "Date";
+            // 
+            // Sum
+            // 
+            this.Sum.DataPropertyName = "Sum";
+            this.Sum.HeaderText = "Сумма";
+            this.Sum.Name = "Sum";
+            // 
+            // Message
+            // 
+            this.Message.DataPropertyName = "Message";
+            this.Message.HeaderText = "Комментарий";
+            this.Message.Name = "Message";
+            this.Message.Width = 200;
+            // 
             // FormCosts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(765, 434);
+            this.ClientSize = new System.Drawing.Size(772, 434);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnUpdate);
@@ -128,7 +185,7 @@
             this.Controls.Add(this.dtpDateCostFrom);
             this.Controls.Add(this.dgvCosts);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormCosts";
             this.ShowIcon = false;
@@ -151,5 +208,11 @@
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NameArticle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NameAnalytic;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Date;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Sum;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Message;
     }
 }
