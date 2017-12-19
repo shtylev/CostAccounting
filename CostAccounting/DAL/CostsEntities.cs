@@ -25,6 +25,29 @@ namespace CostAccounting.DAL
             return Config.db.Costs.Where(i => i.IdArticle == idArticle).Where(dm => dm.Date.Month == month).Where(dy => dy.Date.Year == year).ToList();
         }
         /// <summary>
+        /// Возвращает список расходов, за период, по определенным аналитикам и статьям
+        /// </summary>
+        /// <param name="analytics"></param>
+        /// <param name="articles"></param>
+        /// <param name="dateFrom"></param>
+        /// <param name="dateTo"></param>
+        /// <returns></returns>
+        public static List<Costs> GetCostsForPeriod(List<Analytics> analytics, List<Articles> articles, DateTime dateFrom, DateTime dateTo)
+        {
+            List<Costs> costs = new List<Costs>();
+
+            foreach (var analytic in analytics)
+            {
+                foreach (var article in articles)
+                {
+                    costs.AddRange(Config.db.Costs.Where(dm => dm.Date >= dateFrom).Where(dy => dy.Date <= dateTo).
+                        Where(ni => ni.Analytics.Id == analytic.Id).Where(na => na.Articles.Id == article.Id).ToList());
+                }                   
+            }
+
+            return costs.OrderBy(n => n.Articles.Name).ThenBy(d => d.Date).ToList();
+        }
+        /// <summary>
         /// Возвращает общую сумму расходов по всем статьям, за месяц
         /// </summary>
         /// <param name="month"></param>
