@@ -36,7 +36,8 @@ namespace CostAccounting.Forms
                 if(IdArticle != 0)
                 {
                     Articles article = ArticlesEntities.GetArticleById((int)IdArticle);
-                    clbArticles.SetItemChecked(clbArticles.Items.IndexOf(article), true);   //включаем галку для статьи
+                    if(article != null)
+                        clbArticles.SetItemChecked(clbArticles.Items.IndexOf(article), true);   //включаем галку для статьи
                 }
                 else
                 {
