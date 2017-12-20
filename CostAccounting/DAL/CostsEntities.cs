@@ -62,5 +62,14 @@ namespace CostAccounting.DAL
 
             return 0;
         }
+        /// <summary>
+        /// Получает расход
+        /// </summary>
+        /// <param name="idCost"></param>
+        /// <returns></returns>
+        public static Costs GetCostById(int idCost)
+        {
+            return Config.db.Costs.Where(i => i.Id == idCost).FirstOrDefault();
+        }
     }
 }
