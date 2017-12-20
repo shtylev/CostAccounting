@@ -174,7 +174,7 @@ namespace CostAccounting.Forms.Menu
                     MessageBox.Show(result, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
-                MessageBox.Show("Не выбрана строка справочника.");
+                MessageBox.Show("Не выбрана строка справочника!");
         }
     }
 }
