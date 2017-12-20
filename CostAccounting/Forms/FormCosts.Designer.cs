@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.dgvCosts = new System.Windows.Forms.DataGridView();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NameArticle = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -44,7 +45,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.checkBoxAllAnalytics = new System.Windows.Forms.CheckBox();
             this.checkBoxAllArticles = new System.Windows.Forms.CheckBox();
+            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.deleteConMenuItemGrid = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCosts)).BeginInit();
+            this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvCosts
@@ -60,11 +64,13 @@
             this.Date,
             this.Sum,
             this.Message});
+            this.dgvCosts.ContextMenuStrip = this.contextMenuStrip;
             this.dgvCosts.Location = new System.Drawing.Point(13, 151);
             this.dgvCosts.Margin = new System.Windows.Forms.Padding(4);
             this.dgvCosts.Name = "dgvCosts";
             this.dgvCosts.Size = new System.Drawing.Size(746, 420);
             this.dgvCosts.TabIndex = 0;
+            this.dgvCosts.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCosts_CellValueChanged);
             // 
             // Id
             // 
@@ -147,7 +153,7 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(633, 90);
+            this.btnUpdate.Location = new System.Drawing.Point(634, 112);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(89, 31);
             this.btnUpdate.TabIndex = 5;
@@ -195,6 +201,19 @@
             this.checkBoxAllArticles.UseVisualStyleBackColor = true;
             this.checkBoxAllArticles.CheckedChanged += new System.EventHandler(this.checkBoxAllArticles_CheckedChanged);
             // 
+            // contextMenuStrip
+            // 
+            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deleteConMenuItemGrid});
+            this.contextMenuStrip.Name = "contextMenuStrip";
+            this.contextMenuStrip.Size = new System.Drawing.Size(119, 26);
+            // 
+            // deleteConMenuItemGrid
+            // 
+            this.deleteConMenuItemGrid.Name = "deleteConMenuItemGrid";
+            this.deleteConMenuItemGrid.Size = new System.Drawing.Size(118, 22);
+            this.deleteConMenuItemGrid.Text = "Удалить";
+            // 
             // FormCosts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -219,6 +238,7 @@
             this.Text = "Ежедневный учет";
             this.Load += new System.EventHandler(this.FormCosts_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCosts)).EndInit();
+            this.contextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -242,5 +262,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Message;
         private System.Windows.Forms.CheckBox checkBoxAllAnalytics;
         private System.Windows.Forms.CheckBox checkBoxAllArticles;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem deleteConMenuItemGrid;
     }
 }
