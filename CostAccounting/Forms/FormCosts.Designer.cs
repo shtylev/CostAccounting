@@ -29,6 +29,12 @@
         private void InitializeComponent()
         {
             this.dgvCosts = new System.Windows.Forms.DataGridView();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NameArticle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NameAnalytic = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Sum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Message = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dtpDateCostFrom = new System.Windows.Forms.DateTimePicker();
             this.dtpDateCostTo = new System.Windows.Forms.DateTimePicker();
             this.clbAnalytics = new System.Windows.Forms.CheckedListBox();
@@ -36,12 +42,8 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NameArticle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NameAnalytic = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Sum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Message = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.checkBoxAllAnalytics = new System.Windows.Forms.CheckBox();
+            this.checkBoxAllArticles = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCosts)).BeginInit();
             this.SuspendLayout();
             // 
@@ -58,75 +60,11 @@
             this.Date,
             this.Sum,
             this.Message});
-            this.dgvCosts.Location = new System.Drawing.Point(13, 128);
+            this.dgvCosts.Location = new System.Drawing.Point(13, 151);
             this.dgvCosts.Margin = new System.Windows.Forms.Padding(4);
             this.dgvCosts.Name = "dgvCosts";
-            this.dgvCosts.Size = new System.Drawing.Size(746, 293);
+            this.dgvCosts.Size = new System.Drawing.Size(746, 420);
             this.dgvCosts.TabIndex = 0;
-            // 
-            // dtpDateCostFrom
-            // 
-            this.dtpDateCostFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDateCostFrom.Location = new System.Drawing.Point(28, 98);
-            this.dtpDateCostFrom.Margin = new System.Windows.Forms.Padding(4);
-            this.dtpDateCostFrom.Name = "dtpDateCostFrom";
-            this.dtpDateCostFrom.Size = new System.Drawing.Size(106, 23);
-            this.dtpDateCostFrom.TabIndex = 1;
-            // 
-            // dtpDateCostTo
-            // 
-            this.dtpDateCostTo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDateCostTo.Location = new System.Drawing.Point(142, 98);
-            this.dtpDateCostTo.Margin = new System.Windows.Forms.Padding(4);
-            this.dtpDateCostTo.Name = "dtpDateCostTo";
-            this.dtpDateCostTo.Size = new System.Drawing.Size(106, 23);
-            this.dtpDateCostTo.TabIndex = 2;
-            // 
-            // clbAnalytics
-            // 
-            this.clbAnalytics.CheckOnClick = true;
-            this.clbAnalytics.FormattingEnabled = true;
-            this.clbAnalytics.Location = new System.Drawing.Point(264, 27);
-            this.clbAnalytics.Name = "clbAnalytics";
-            this.clbAnalytics.Size = new System.Drawing.Size(164, 94);
-            this.clbAnalytics.TabIndex = 3;
-            // 
-            // clbArticles
-            // 
-            this.clbArticles.CheckOnClick = true;
-            this.clbArticles.FormattingEnabled = true;
-            this.clbArticles.Location = new System.Drawing.Point(445, 27);
-            this.clbArticles.Name = "clbArticles";
-            this.clbArticles.Size = new System.Drawing.Size(164, 94);
-            this.clbArticles.TabIndex = 4;
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.Location = new System.Drawing.Point(633, 90);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(89, 31);
-            this.btnUpdate.TabIndex = 5;
-            this.btnUpdate.Text = "Обновить";
-            this.btnUpdate.UseVisualStyleBackColor = true;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(264, 8);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(79, 17);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Аналитики";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(445, 8);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(54, 17);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Статьи";
             // 
             // Id
             // 
@@ -171,11 +109,99 @@
             this.Message.Name = "Message";
             this.Message.Width = 200;
             // 
+            // dtpDateCostFrom
+            // 
+            this.dtpDateCostFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDateCostFrom.Location = new System.Drawing.Point(26, 120);
+            this.dtpDateCostFrom.Margin = new System.Windows.Forms.Padding(4);
+            this.dtpDateCostFrom.Name = "dtpDateCostFrom";
+            this.dtpDateCostFrom.Size = new System.Drawing.Size(106, 23);
+            this.dtpDateCostFrom.TabIndex = 1;
+            // 
+            // dtpDateCostTo
+            // 
+            this.dtpDateCostTo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDateCostTo.Location = new System.Drawing.Point(140, 120);
+            this.dtpDateCostTo.Margin = new System.Windows.Forms.Padding(4);
+            this.dtpDateCostTo.Name = "dtpDateCostTo";
+            this.dtpDateCostTo.Size = new System.Drawing.Size(106, 23);
+            this.dtpDateCostTo.TabIndex = 2;
+            // 
+            // clbAnalytics
+            // 
+            this.clbAnalytics.CheckOnClick = true;
+            this.clbAnalytics.FormattingEnabled = true;
+            this.clbAnalytics.Location = new System.Drawing.Point(264, 49);
+            this.clbAnalytics.Name = "clbAnalytics";
+            this.clbAnalytics.Size = new System.Drawing.Size(164, 94);
+            this.clbAnalytics.TabIndex = 3;
+            // 
+            // clbArticles
+            // 
+            this.clbArticles.CheckOnClick = true;
+            this.clbArticles.FormattingEnabled = true;
+            this.clbArticles.Location = new System.Drawing.Point(448, 49);
+            this.clbArticles.Name = "clbArticles";
+            this.clbArticles.Size = new System.Drawing.Size(164, 94);
+            this.clbArticles.TabIndex = 4;
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Location = new System.Drawing.Point(633, 90);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(89, 31);
+            this.btnUpdate.TabIndex = 5;
+            this.btnUpdate.Text = "Обновить";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(266, 6);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(79, 17);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Аналитики";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(450, 6);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(54, 17);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Статьи";
+            // 
+            // checkBoxAllAnalytics
+            // 
+            this.checkBoxAllAnalytics.AutoSize = true;
+            this.checkBoxAllAnalytics.Location = new System.Drawing.Point(264, 26);
+            this.checkBoxAllAnalytics.Name = "checkBoxAllAnalytics";
+            this.checkBoxAllAnalytics.Size = new System.Drawing.Size(51, 21);
+            this.checkBoxAllAnalytics.TabIndex = 8;
+            this.checkBoxAllAnalytics.Text = "Все";
+            this.checkBoxAllAnalytics.UseVisualStyleBackColor = true;
+            this.checkBoxAllAnalytics.CheckedChanged += new System.EventHandler(this.checkBoxAllAnalytics_CheckedChanged);
+            // 
+            // checkBoxAllArticles
+            // 
+            this.checkBoxAllArticles.AutoSize = true;
+            this.checkBoxAllArticles.Location = new System.Drawing.Point(448, 26);
+            this.checkBoxAllArticles.Name = "checkBoxAllArticles";
+            this.checkBoxAllArticles.Size = new System.Drawing.Size(51, 21);
+            this.checkBoxAllArticles.TabIndex = 9;
+            this.checkBoxAllArticles.Text = "Все";
+            this.checkBoxAllArticles.UseVisualStyleBackColor = true;
+            this.checkBoxAllArticles.CheckedChanged += new System.EventHandler(this.checkBoxAllArticles_CheckedChanged);
+            // 
             // FormCosts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(772, 434);
+            this.ClientSize = new System.Drawing.Size(772, 581);
+            this.Controls.Add(this.checkBoxAllArticles);
+            this.Controls.Add(this.checkBoxAllAnalytics);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnUpdate);
@@ -214,5 +240,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Date;
         private System.Windows.Forms.DataGridViewTextBoxColumn Sum;
         private System.Windows.Forms.DataGridViewTextBoxColumn Message;
+        private System.Windows.Forms.CheckBox checkBoxAllAnalytics;
+        private System.Windows.Forms.CheckBox checkBoxAllArticles;
     }
 }
