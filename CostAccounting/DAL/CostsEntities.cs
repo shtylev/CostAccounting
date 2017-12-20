@@ -71,5 +71,26 @@ namespace CostAccounting.DAL
         {
             return Config.db.Costs.Where(i => i.Id == idCost).FirstOrDefault();
         }
+        public static string DeleteCost(int idCost)
+        {
+            Costs cost = GetCostById(idCost);
+
+            if (cost != null)
+            {
+                try
+                {
+                    Config.db.Costs.Remove(cost);
+                    Config.db.SaveChanges();
+
+                    return Resources.OK;
+                }
+                catch (Exception ex)
+                {
+                    return ex.Message;
+                }
+            }
+
+            return "Найти расход не удалось.";
+        }
     }
 }
