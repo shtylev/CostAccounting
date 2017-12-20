@@ -206,13 +206,14 @@
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.deleteConMenuItemGrid});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(119, 26);
+            this.contextMenuStrip.Size = new System.Drawing.Size(153, 48);
             // 
             // deleteConMenuItemGrid
             // 
             this.deleteConMenuItemGrid.Name = "deleteConMenuItemGrid";
-            this.deleteConMenuItemGrid.Size = new System.Drawing.Size(118, 22);
+            this.deleteConMenuItemGrid.Size = new System.Drawing.Size(152, 22);
             this.deleteConMenuItemGrid.Text = "Удалить";
+            this.deleteConMenuItemGrid.Click += new System.EventHandler(this.deleteConMenuItemGrid_Click);
             // 
             // FormCosts
             // 
