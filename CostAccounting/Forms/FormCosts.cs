@@ -46,17 +46,12 @@ namespace CostAccounting.Forms
                 else
                 {
                     //если переходят из общей суммы, то включаем галку у всех статей
-                    for(int index = 0; index < clbArticles.Items.Count; index++)
-                    {
-                        clbArticles.SetItemChecked(index, true);
-                    }
+                    IncludeAllInCheckListBox(clbArticles, false);
                 }
 
                 //включаем галку у всех аналитик
-                for (int index = 0; index < clbAnalytics.Items.Count; index++)
-                {
-                    clbAnalytics.SetItemChecked(index, true);
-                }
+                IncludeAllInCheckListBox(clbAnalytics, false);
+                checkBoxAllAnalytics.Checked = true;
 
                 FillCostsModel();
                 FillTableCosts();
@@ -101,6 +96,36 @@ namespace CostAccounting.Forms
         {
             FillCostsModel();
             FillTableCosts();
+        }
+        void IncludeAllInCheckListBox(CheckedListBox checkBox, bool disable)
+        {
+            for (int index = 0; index < checkBox.Items.Count; index++)
+            {
+                if (disable)
+                    checkBox.SetItemChecked(index, false);
+                else
+                    checkBox.SetItemChecked(index, true);
+            }                        
+        }
+
+        private void checkBoxAllAnalytics_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox checkBox = (CheckBox)sender;
+
+            if (checkBox.Checked == true)
+                IncludeAllInCheckListBox(clbAnalytics, false);
+            else
+                IncludeAllInCheckListBox(clbAnalytics, true);
+        }
+
+        private void checkBoxAllArticles_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox checkBox = (CheckBox)sender;
+
+            if (checkBox.Checked == true)
+                IncludeAllInCheckListBox(clbArticles, false);
+            else
+                IncludeAllInCheckListBox(clbArticles, true);
         }
     }
 }
