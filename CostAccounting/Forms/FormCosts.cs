@@ -151,13 +151,39 @@ namespace CostAccounting.Forms
                             cost.Sum = Math.Round(Convert.ToDouble(newValue), 2);
                             break;
                         case "Message":
-                            cost.Message = newValue.ToString();
+                            cost.Message = newValue == null ? null : newValue.ToString();
                             break;
                     }
 
                     Config.db.SaveChanges();
                 }
             }
+        }
+
+        private void deleteConMenuItemGrid_Click(object sender, EventArgs e)
+        {
+            if (dgvCosts.SelectedRows.Count != 0)
+            {
+                for(int index = 0; index < dgvCosts.SelectedRows.Count; index++)
+                {
+                    CostModel selectedCost = (CostModel)dgvCosts.SelectedRows[index].DataBoundItem;
+
+                    //удалить из бд
+                    string result = "";
+                    result = CostsEntities.DeleteCost(selectedCost.Id);
+
+                    if (result == Resources.OK)
+                    {
+                        //удалить из модели
+                        costsModel.Remove(selectedCost);
+                    }
+                    else
+                        MessageBox.Show(result, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                FillTableCosts();
+            }
+            else
+                MessageBox.Show("Не выбрана строка расхода!");
         }
     }
 }
