@@ -127,5 +127,37 @@ namespace CostAccounting.Forms
             else
                 IncludeAllInCheckListBox(clbArticles, true);
         }
+
+        private void dgvCosts_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            //сохраняем изменения для 3 столбцов: дата, сумма, комментарий
+            DataGridViewCell editCell = (sender as DataGridView).CurrentCell;
+            
+            if(editCell != null)
+            {
+                Costs cost = CostsEntities.GetCostById((int)(sender as DataGridView).Rows[e.RowIndex].Cells[0].Value);
+
+                if(cost != null)
+                {
+                    object newValue = editCell.Value;
+                    string nameColumn = editCell.OwningColumn.Name;
+
+                    switch (nameColumn)
+                    {
+                        case "Date":
+                            cost.Date = Convert.ToDateTime(newValue).Date;
+                            break;
+                        case "Sum":
+                            cost.Sum = Math.Round(Convert.ToDouble(newValue), 2);
+                            break;
+                        case "Message":
+                            cost.Message = newValue.ToString();
+                            break;
+                    }
+
+                    Config.db.SaveChanges();
+                }
+            }
+        }
     }
 }
