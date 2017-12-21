@@ -94,7 +94,7 @@ namespace CostAccounting
             Costs cost = new Costs();
             int idAnalytic = (int)cmbCostsAnalytics.SelectedValue;
             int idArticle = (int)cmbCostsArticles.SelectedValue;
-            int typeSaldoTotalSum = (int)References.TypeSaldo.totalSumForEndPeriod;
+            //int typeSaldoTotalSum = (int)References.TypeSaldo.totalSumForEndPeriod;
             double sumCost = txtSumCost.Text == "" ? 0 : Math.Round(Convert.ToDouble(txtSumCost.Text.Replace(",", ".")), 2);
 
             if (sumCost != 0)
@@ -110,36 +110,36 @@ namespace CostAccounting
                     Config.db.Costs.Add(cost);
 
                     //прибавление суммы расхода к общей сумме сальдо
-                    Saldo saldoTotalSumArticle = SaldoEntities.GetSaldoTotalSumForEndPeriod(null, idArticle);
-                    Saldo saldoTotalSumAnalytic = SaldoEntities.GetSaldoTotalSumForEndPeriod(idAnalytic, null);
+                    //Saldo saldoTotalSumArticle = SaldoEntities.GetSaldoTotalSumForEndPeriod(null, idArticle);
+                    //Saldo saldoTotalSumAnalytic = SaldoEntities.GetSaldoTotalSumForEndPeriod(idAnalytic, null);
                     
-                    //обрабатываем общую сумму по аналитике
-                    if (saldoTotalSumAnalytic != null)
-                    {
-                        saldoTotalSumAnalytic.Sum += sumCost;
-                    }
-                    else
-                    {
-                        //если нет общей суммы, то создавать
-                        saldoTotalSumAnalytic = new Saldo();
-                        saldoTotalSumAnalytic.Type = typeSaldoTotalSum;
-                        saldoTotalSumAnalytic.IdAnalytic = idAnalytic;
-                        saldoTotalSumAnalytic.Sum = sumCost;
-                        Config.db.Saldo.Add(saldoTotalSumAnalytic);
-                    }                    
+                    ////обрабатываем общую сумму по аналитике
+                    //if (saldoTotalSumAnalytic != null)
+                    //{
+                    //    saldoTotalSumAnalytic.Sum += sumCost;
+                    //}
+                    //else
+                    //{
+                    //    //если нет общей суммы, то создавать
+                    //    saldoTotalSumAnalytic = new Saldo();
+                    //    saldoTotalSumAnalytic.Type = typeSaldoTotalSum;
+                    //    saldoTotalSumAnalytic.IdAnalytic = idAnalytic;
+                    //    saldoTotalSumAnalytic.Sum = sumCost;
+                    //    Config.db.Saldo.Add(saldoTotalSumAnalytic);
+                    //}                    
 
-                    //обрабатываем общую сумму по статье
-                    if (saldoTotalSumArticle != null)
-                        saldoTotalSumArticle.Sum += sumCost;
-                    else
-                    {
-                        //если нет общей суммы, то создавать
-                        saldoTotalSumArticle = new Saldo();
-                        saldoTotalSumArticle.Type = typeSaldoTotalSum;
-                        saldoTotalSumArticle.IdArticle = idArticle;
-                        saldoTotalSumArticle.Sum = sumCost;
-                        Config.db.Saldo.Add(saldoTotalSumArticle);
-                    }
+                    ////обрабатываем общую сумму по статье
+                    //if (saldoTotalSumArticle != null)
+                    //    saldoTotalSumArticle.Sum += sumCost;
+                    //else
+                    //{
+                    //    //если нет общей суммы, то создавать
+                    //    saldoTotalSumArticle = new Saldo();
+                    //    saldoTotalSumArticle.Type = typeSaldoTotalSum;
+                    //    saldoTotalSumArticle.IdArticle = idArticle;
+                    //    saldoTotalSumArticle.Sum = sumCost;
+                    //    Config.db.Saldo.Add(saldoTotalSumArticle);
+                    //}
 
                     //реализовать изменение сумм у сальдо на конец периода
                     //найти сальдо на конец периода
