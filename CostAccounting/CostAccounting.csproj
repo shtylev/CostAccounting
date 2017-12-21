@@ -78,6 +78,7 @@
   <ItemGroup>
     <Compile Include="DAL\AnalyticsEntities.cs" />
     <Compile Include="DAL\ArticlesEntities.cs" />
+    <Compile Include="DAL\Debugger.cs" />
     <Compile Include="DAL\ListBoxEntities.cs" />
     <Compile Include="DAL\Config.cs" />
     <Compile Include="DAL\CostsEntities.cs" />
@@ -107,6 +108,12 @@
     </Compile>
     <Compile Include="Forms\FormCosts.Designer.cs">
       <DependentUpon>FormCosts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormDebuger.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormDebuger.Designer.cs">
+      <DependentUpon>FormDebuger.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Menu\FormAddSaldoBegin.cs">
       <SubType>Form</SubType>
@@ -181,6 +188,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormCosts.resx">
       <DependentUpon>FormCosts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormDebuger.resx">
+      <DependentUpon>FormDebuger.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Menu\FormAddSaldoBegin.resx">
       <DependentUpon>FormAddSaldoBegin.cs</DependentUpon>

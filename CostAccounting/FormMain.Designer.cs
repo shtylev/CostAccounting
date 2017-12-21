@@ -34,6 +34,7 @@
             this.menuItemAddSaldoBegin = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemAnalyticsReference = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemArticlesReference = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemsAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBoxCosts = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtSumCost = new System.Windows.Forms.TextBox();
@@ -59,7 +60,7 @@
             this.btnUpdateSvod = new System.Windows.Forms.Button();
             this.dtpSvodDateTo = new System.Windows.Forms.DateTimePicker();
             this.dtpSvodDateFrom = new System.Windows.Forms.DateTimePicker();
-            this.menuItemsAbout = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuItemDebuger = new System.Windows.Forms.ToolStripMenuItem();
             this.menuMain.SuspendLayout();
             this.groupBoxCosts.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSvod)).BeginInit();
@@ -73,6 +74,7 @@
             this.menuMain.BackColor = System.Drawing.SystemColors.Menu;
             this.menuMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuItemReference,
+            this.MenuItemDebuger,
             this.menuItemsAbout});
             this.menuMain.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.menuMain.Location = new System.Drawing.Point(0, 0);
@@ -112,6 +114,13 @@
             this.menuItemArticlesReference.Size = new System.Drawing.Size(222, 22);
             this.menuItemArticlesReference.Text = "Статьи";
             this.menuItemArticlesReference.Click += new System.EventHandler(this.menuItemArticlesReference_Click);
+            // 
+            // menuItemsAbout
+            // 
+            this.menuItemsAbout.Name = "menuItemsAbout";
+            this.menuItemsAbout.Size = new System.Drawing.Size(52, 20);
+            this.menuItemsAbout.Text = "About";
+            this.menuItemsAbout.Click += new System.EventHandler(this.menuItemsAbout_Click);
             // 
             // groupBoxCosts
             // 
@@ -358,12 +367,12 @@
             this.dtpSvodDateFrom.Size = new System.Drawing.Size(100, 23);
             this.dtpSvodDateFrom.TabIndex = 3;
             // 
-            // menuItemsAbout
+            // MenuItemDebuger
             // 
-            this.menuItemsAbout.Name = "menuItemsAbout";
-            this.menuItemsAbout.Size = new System.Drawing.Size(52, 20);
-            this.menuItemsAbout.Text = "About";
-            this.menuItemsAbout.Click += new System.EventHandler(this.menuItemsAbout_Click);
+            this.MenuItemDebuger.Name = "MenuItemDebuger";
+            this.MenuItemDebuger.Size = new System.Drawing.Size(72, 20);
+            this.MenuItemDebuger.Text = "Отладчик";
+            this.MenuItemDebuger.Click += new System.EventHandler(this.MenuItemDebuger_Click);
             // 
             // formMain
             // 
@@ -431,6 +440,7 @@
         private System.Windows.Forms.DateTimePicker dtpSvodDateFrom;
         private System.Windows.Forms.Button btnUpdateSvod;
         private System.Windows.Forms.ToolStripMenuItem menuItemsAbout;
+        private System.Windows.Forms.ToolStripMenuItem MenuItemDebuger;
     }
 }
 

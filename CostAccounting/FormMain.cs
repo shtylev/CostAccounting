@@ -26,7 +26,7 @@ namespace CostAccounting
             InitializeComponent();
 
             txtSumCost.LostFocus += new EventHandler(txtSumCost_LostFocus);
-            dgvSvod.CellMouseDoubleClick += new DataGridViewCellMouseEventHandler(dgvSvod_CellMouseDoubleClick);
+            dgvSvod.CellMouseDoubleClick += new DataGridViewCellMouseEventHandler(dgvSvod_CellMouseDoubleClick);            
         }
 
         private void formMain_Load(object sender, EventArgs e)
@@ -295,6 +295,12 @@ namespace CostAccounting
         {
             FormAbout formAbout = new FormAbout();
             formAbout.ShowDialog();
+        }
+
+        private void MenuItemDebuger_Click(object sender, EventArgs e)
+        {
+            FormDebuger formDebuger = new FormDebuger();
+            formDebuger.ShowDialog();
         }
     }
 }
