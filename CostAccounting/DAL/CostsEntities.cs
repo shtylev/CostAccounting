@@ -92,5 +92,29 @@ namespace CostAccounting.DAL
 
             return "Найти расход не удалось.";
         }
+        /// <summary>
+        /// Получает общую сумму расходов
+        /// </summary>
+        /// <returns></returns>
+        public static double GetTotalSumCosts(int? idAnalytic, int? idArticle)
+        {
+            Costs cost = new Costs();
+
+            if (idAnalytic != null)
+            {
+                cost = Config.db.Costs.Where(i => i.IdAnalytic == idAnalytic).FirstOrDefault(); //проверка на существование любого расхода
+                if (cost != null)
+                    return Config.db.Costs.Where(i => i.IdAnalytic == idAnalytic).Sum(s => s.Sum);
+            }
+
+            if (idArticle != null)
+            {
+                cost = Config.db.Costs.Where(i => i.IdArticle == idArticle).FirstOrDefault();
+                if(cost != null)
+                    return Config.db.Costs.Where(i => i.IdArticle == idArticle).Sum(s => s.Sum);
+            }
+
+            return 0;
+        }
     }
 }
