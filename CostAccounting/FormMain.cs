@@ -290,5 +290,11 @@ namespace CostAccounting
 
             formCosts.ShowDialog();
         }
+
+        private void menuItemsAbout_Click(object sender, EventArgs e)
+        {
+            FormAbout formAbout = new FormAbout();
+            formAbout.ShowDialog();
+        }
     }
 }
