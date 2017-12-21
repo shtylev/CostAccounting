@@ -145,8 +145,10 @@ namespace CostAccounting.Forms
                     //вычитаем сумму расхода до изменения, от сальдо на конец
                     Saldo saldoEndPeriodArticle = SaldoEntities.GetSaldoEndPeriod(null, cost.IdArticle);
                     Saldo saldoEndPeriodAnalytic = SaldoEntities.GetSaldoEndPeriod(cost.IdAnalytic, null);
-                    saldoEndPeriodAnalytic.Sum -= cost.Sum;
-                    saldoEndPeriodArticle.Sum += cost.Sum;
+                    if(saldoEndPeriodAnalytic != null)
+                        saldoEndPeriodAnalytic.Sum -= cost.Sum;
+                    if(saldoEndPeriodArticle != null)
+                        saldoEndPeriodArticle.Sum += cost.Sum;
 
                     switch (nameColumn)
                     {
@@ -162,8 +164,10 @@ namespace CostAccounting.Forms
                     }
 
                     //прибавляем новую сумму расхода к сальдо на конец 
-                    saldoEndPeriodAnalytic.Sum += cost.Sum;
-                    saldoEndPeriodArticle.Sum -= cost.Sum;
+                    if (saldoEndPeriodAnalytic != null)
+                        saldoEndPeriodAnalytic.Sum += cost.Sum;
+                    if (saldoEndPeriodArticle != null)
+                        saldoEndPeriodArticle.Sum -= cost.Sum;
 
                     Config.db.SaveChanges();
                 }
@@ -177,6 +181,7 @@ namespace CostAccounting.Forms
                 for(int index = 0; index < dgvCosts.SelectedRows.Count; index++)
                 {
                     CostModel selectedCost = (CostModel)dgvCosts.SelectedRows[index].DataBoundItem;
+                    Costs cost = CostsEntities.GetCostById(selectedCost.Id);
 
                     //удалить из бд
                     string result = "";
@@ -186,6 +191,15 @@ namespace CostAccounting.Forms
                     {
                         //удалить из модели
                         costsModel.Remove(selectedCost);
+
+                        //изменение сальдо на конец периода
+                        Saldo saldoEndPeriodAnalytic = SaldoEntities.GetSaldoEndPeriod(cost.IdAnalytic, null);
+                        Saldo saldoEndPeriodArticle = SaldoEntities.GetSaldoEndPeriod(null, cost.IdArticle);
+                        if (saldoEndPeriodAnalytic != null)
+                                saldoEndPeriodAnalytic.Sum -= selectedCost.Sum;
+                            if (saldoEndPeriodArticle != null)
+                                saldoEndPeriodArticle.Sum += selectedCost.Sum;
+                        Config.db.SaveChanges();
                     }
                     else
                         MessageBox.Show(result, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
