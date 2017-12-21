@@ -130,17 +130,23 @@ namespace CostAccounting.Forms
 
         private void dgvCosts_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            //сохраняем изменения для 3 столбцов: дата, сумма, комментарий
-            DataGridViewCell editCell = (sender as DataGridView).CurrentCell;
-            
-            if(editCell != null)
+            //сохраняем изменения для 3 столбцов: дата, сумма, комментарий            
+            if((sender as DataGridView).CurrentCell != null)
             {
-                Costs cost = CostsEntities.GetCostById((int)(sender as DataGridView).Rows[e.RowIndex].Cells[0].Value);
+                DataGridViewCell editCell = (sender as DataGridView).CurrentCell;
 
+                Costs cost = CostsEntities.GetCostById((int)(sender as DataGridView).Rows[e.RowIndex].Cells[0].Value);
+                                
                 if(cost != null)
                 {
                     object newValue = editCell.Value;
                     string nameColumn = editCell.OwningColumn.Name;
+
+                    //вычитаем сумму расхода до изменения, от сальдо на конец
+                    Saldo saldoEndPeriodArticle = SaldoEntities.GetSaldoEndPeriod(null, cost.IdArticle);
+                    Saldo saldoEndPeriodAnalytic = SaldoEntities.GetSaldoEndPeriod(cost.IdAnalytic, null);
+                    saldoEndPeriodAnalytic.Sum -= cost.Sum;
+                    saldoEndPeriodArticle.Sum += cost.Sum;
 
                     switch (nameColumn)
                     {
@@ -154,6 +160,10 @@ namespace CostAccounting.Forms
                             cost.Message = newValue == null ? null : newValue.ToString();
                             break;
                     }
+
+                    //прибавляем новую сумму расхода к сальдо на конец 
+                    saldoEndPeriodAnalytic.Sum += cost.Sum;
+                    saldoEndPeriodArticle.Sum -= cost.Sum;
 
                     Config.db.SaveChanges();
                 }
