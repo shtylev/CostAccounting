@@ -96,7 +96,7 @@ namespace CostAccounting.Forms.Menu
 
                     //сразу же делаем сальдо на конец периода. Таким образом сальдо на начало и на конец всегда будут равны
                     saldoEndPeriod.Type = (int)References.TypeSaldo.endPeriod;
-                    saldoEndPeriod.Sum = saldoStartPeriod.Sum + SaldoEntities.GetTotalSumForSaldoEndPeriod((int)cmbRefAnalytics.SelectedValue, null);
+                    saldoEndPeriod.Sum = saldoStartPeriod.Sum + CostsEntities.GetTotalSumCosts((int)cmbRefAnalytics.SelectedValue, null); //SaldoEntities.GetTotalSumForSaldoEndPeriod((int)cmbRefAnalytics.SelectedValue, null);
                     saldoEndPeriod.IdAnalytic = (int)cmbRefAnalytics.SelectedValue;
                     Config.db.Saldo.Add(saldoEndPeriod);
 
@@ -131,11 +131,7 @@ namespace CostAccounting.Forms.Menu
 
                     //сразу же делаем сальдо на конец периода. Таким образом сальдо на начало и на конец всегда будут равны
                     saldoEndPeriod.Type = (int)References.TypeSaldo.endPeriod;
-
-                    double totalSum = SaldoEntities.GetTotalSumForSaldoEndPeriod(null, (int)cmbRefArticles.SelectedValue);
-                    saldoEndPeriod.Sum = saldoStartPeriod.Sum - totalSum;
-                    //saldoEndPeriod.Sum = totalSum >= 0 && saldoStartPeriod.Sum > 0 ? saldoStartPeriod.Sum - totalSum : saldoStartPeriod.Sum + totalSum;
-
+                    saldoEndPeriod.Sum = saldoStartPeriod.Sum - CostsEntities.GetTotalSumCosts(null, (int)cmbRefArticles.SelectedValue); //SaldoEntities.GetTotalSumForSaldoEndPeriod(null, (int)cmbRefArticles.SelectedValue);
                     saldoEndPeriod.IdArticle = (int)cmbRefArticles.SelectedValue;
                     Config.db.Saldo.Add(saldoEndPeriod);
 
