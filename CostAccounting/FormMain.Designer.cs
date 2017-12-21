@@ -59,6 +59,7 @@
             this.btnUpdateSvod = new System.Windows.Forms.Button();
             this.dtpSvodDateTo = new System.Windows.Forms.DateTimePicker();
             this.dtpSvodDateFrom = new System.Windows.Forms.DateTimePicker();
+            this.menuItemsAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.menuMain.SuspendLayout();
             this.groupBoxCosts.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSvod)).BeginInit();
@@ -71,7 +72,8 @@
             // 
             this.menuMain.BackColor = System.Drawing.SystemColors.Menu;
             this.menuMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuItemReference});
+            this.menuItemReference,
+            this.menuItemsAbout});
             this.menuMain.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.menuMain.Location = new System.Drawing.Point(0, 0);
             this.menuMain.Name = "menuMain";
@@ -356,6 +358,13 @@
             this.dtpSvodDateFrom.Size = new System.Drawing.Size(100, 23);
             this.dtpSvodDateFrom.TabIndex = 3;
             // 
+            // menuItemsAbout
+            // 
+            this.menuItemsAbout.Name = "menuItemsAbout";
+            this.menuItemsAbout.Size = new System.Drawing.Size(52, 20);
+            this.menuItemsAbout.Text = "About";
+            this.menuItemsAbout.Click += new System.EventHandler(this.menuItemsAbout_Click);
+            // 
             // formMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -421,6 +430,7 @@
         private System.Windows.Forms.DateTimePicker dtpSvodDateTo;
         private System.Windows.Forms.DateTimePicker dtpSvodDateFrom;
         private System.Windows.Forms.Button btnUpdateSvod;
+        private System.Windows.Forms.ToolStripMenuItem menuItemsAbout;
     }
 }
 
