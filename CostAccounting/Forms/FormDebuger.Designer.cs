@@ -46,7 +46,7 @@
             this.tableLayoutPanel1.Controls.Add(this.txtQuery, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 24);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 24.24242F));
@@ -62,7 +62,7 @@
             this.dgvResultQuery.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvResultQuery.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvResultQuery.Location = new System.Drawing.Point(4, 94);
-            this.dgvResultQuery.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvResultQuery.Margin = new System.Windows.Forms.Padding(4);
             this.dgvResultQuery.Name = "dgvResultQuery";
             this.dgvResultQuery.ReadOnly = true;
             this.dgvResultQuery.Size = new System.Drawing.Size(540, 276);
@@ -72,7 +72,7 @@
             // 
             this.txtQuery.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtQuery.Location = new System.Drawing.Point(4, 4);
-            this.txtQuery.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtQuery.Margin = new System.Windows.Forms.Padding(4);
             this.txtQuery.Multiline = true;
             this.txtQuery.Name = "txtQuery";
             this.txtQuery.Size = new System.Drawing.Size(540, 82);
@@ -92,6 +92,7 @@
             // MenuItemPerform
             // 
             this.MenuItemPerform.Name = "MenuItemPerform";
+            this.MenuItemPerform.ShortcutKeys = System.Windows.Forms.Keys.F5;
             this.MenuItemPerform.Size = new System.Drawing.Size(81, 20);
             this.MenuItemPerform.Text = "Выполнить";
             this.MenuItemPerform.Click += new System.EventHandler(this.MenuItemPerform_Click);
@@ -106,7 +107,7 @@
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormDebuger";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Отладчик";
