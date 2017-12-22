@@ -112,6 +112,10 @@
             this.conMenuEditColor.Text = "Изменить цвет";
             this.conMenuEditColor.Click += new System.EventHandler(this.conMenuEditColor_Click);
             // 
+            // colorDialogRef
+            // 
+            this.colorDialogRef.FullOpen = true;
+            // 
             // FormReferences
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
