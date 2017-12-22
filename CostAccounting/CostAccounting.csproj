@@ -78,6 +78,7 @@
   <ItemGroup>
     <Compile Include="DAL\AnalyticsEntities.cs" />
     <Compile Include="DAL\ArticlesEntities.cs" />
+    <Compile Include="DAL\Colors.cs" />
     <Compile Include="DAL\Debugger.cs" />
     <Compile Include="DAL\ListBoxEntities.cs" />
     <Compile Include="DAL\Config.cs" />
