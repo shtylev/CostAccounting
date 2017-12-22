@@ -36,6 +36,8 @@
             this.conMenuAddArchive = new System.Windows.Forms.ToolStripMenuItem();
             this.conMenuShowArchive = new System.Windows.Forms.ToolStripMenuItem();
             this.lblTypeReference = new System.Windows.Forms.Label();
+            this.conMenuEditColor = new System.Windows.Forms.ToolStripMenuItem();
+            this.colorDialogRef = new System.Windows.Forms.ColorDialog();
             this.cmsReference.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,7 +59,8 @@
             this.conMenuCreate,
             this.conMenuRename,
             this.conMenuAddArchive,
-            this.conMenuShowArchive});
+            this.conMenuShowArchive,
+            this.conMenuEditColor});
             this.cmsReference.Name = "cmsReference";
             this.cmsReference.Size = new System.Drawing.Size(189, 114);
             // 
@@ -102,6 +105,13 @@
             this.lblTypeReference.TabIndex = 2;
             this.lblTypeReference.Visible = false;
             // 
+            // conMenuEditColor
+            // 
+            this.conMenuEditColor.Name = "conMenuEditColor";
+            this.conMenuEditColor.Size = new System.Drawing.Size(188, 22);
+            this.conMenuEditColor.Text = "Изменить цвет";
+            this.conMenuEditColor.Click += new System.EventHandler(this.conMenuEditColor_Click);
+            // 
             // FormReferences
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -129,5 +139,7 @@
         private System.Windows.Forms.ToolStripMenuItem conMenuAddArchive;
         public System.Windows.Forms.ListBox listBoxReference;
         private System.Windows.Forms.ToolStripMenuItem conMenuShowArchive;
+        private System.Windows.Forms.ToolStripMenuItem conMenuEditColor;
+        private System.Windows.Forms.ColorDialog colorDialogRef;
     }
 }

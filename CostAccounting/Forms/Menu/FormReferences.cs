@@ -81,5 +81,32 @@ namespace CostAccounting.Forms.Menu
             FormRefArchive formRefArchive = new FormRefArchive(this);
             formRefArchive.ShowDialog();
         }
+
+        private void conMenuEditColor_Click(object sender, EventArgs e)
+        {
+            if(colorDialogRef.ShowDialog() == DialogResult.OK)
+            {
+                Color colorValue = Color.FromArgb(colorDialogRef.Color.R, colorDialogRef.Color.G, colorDialogRef.Color.B);
+                string color = "#" + colorValue.Name;
+                int idRef = (int)listBoxReference.SelectedValue;
+
+                if (lblTypeReference.Text == Resources.Analytics)
+                {
+                    Analytics analytic = AnalyticsEntities.GetAnalyticById(idRef);
+
+                    if (analytic != null)
+                        analytic.Color = color;
+                }
+
+                if (lblTypeReference.Text == Resources.Articles)
+                {
+                    Articles article = ArticlesEntities.GetArticleById(idRef);
+
+                    if (article != null)
+                        article.Color = color;
+                }
+                Config.db.SaveChanges();
+            }            
+        }
     }
 }
