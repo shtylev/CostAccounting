@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище DbCostAccountingModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище DbCostAccountingModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Analytics">
           <Key>
             <PropertyRef Name="Id" />
@@ -12,6 +12,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="Color" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="Articles">
           <Key>
@@ -20,6 +21,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="Color" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="Costs">
           <Key>
@@ -112,8 +114,7 @@
             <End Role="Saldo" EntitySet="Saldo" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DbCostAccountingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -126,6 +127,7 @@
           <Property Name="Active" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Costs" Relationship="Self.FK_Costs_Analytics" FromRole="Analytics" ToRole="Costs" />
           <NavigationProperty Name="Saldo" Relationship="Self.FK_Saldo_Analytics" FromRole="Analytics" ToRole="Saldo" />
+          <Property Name="Color" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Articles">
           <Key>
@@ -136,6 +138,7 @@
           <Property Name="Active" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Costs" Relationship="Self.FK_Costs_Articles" FromRole="Articles" ToRole="Costs" />
           <NavigationProperty Name="Saldo" Relationship="Self.FK_Saldo_Articles" FromRole="Articles" ToRole="Saldo" />
+          <Property Name="Color" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Costs">
           <Key>
@@ -241,6 +244,7 @@
           <EntitySetMapping Name="Analytics">
             <EntityTypeMapping TypeName="DbCostAccountingModel.Analytics">
               <MappingFragment StoreEntitySet="Analytics">
+                <ScalarProperty Name="Color" ColumnName="Color" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Active" ColumnName="Active" />
@@ -250,6 +254,7 @@
           <EntitySetMapping Name="Articles">
             <EntityTypeMapping TypeName="DbCostAccountingModel.Articles">
               <MappingFragment StoreEntitySet="Articles">
+                <ScalarProperty Name="Color" ColumnName="Color" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Active" ColumnName="Active" />
