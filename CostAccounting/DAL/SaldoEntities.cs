@@ -204,24 +204,27 @@ namespace CostAccounting.DAL
         /// <param name="saldoModel"></param>
         public static void PaintTableSaldo(DataGridView dgw, List<SaldoModel> saldoModel)
         {
-            for (int indexRow = 0; indexRow < saldoModel.Count; indexRow++)
+            if(saldoModel.Count != 0)
             {
                 Articles article = new Articles();
                 Analytics analytic = new Analytics();
 
-                if (saldoModel[indexRow].IdAnalytic != null)
+                for (int indexRow = 0; indexRow < saldoModel.Count; indexRow++)
                 {
-                    analytic = AnalyticsEntities.GetAnalyticById((int)saldoModel[indexRow].IdAnalytic);
-                    if (analytic.Color != null)
-                        dgw.Rows[indexRow].DefaultCellStyle.BackColor = Colors.GetColor(analytic.Color);
+                    if (saldoModel[indexRow].IdAnalytic != null)
+                    {
+                        analytic = AnalyticsEntities.GetAnalyticById((int)saldoModel[indexRow].IdAnalytic);
+                        if (analytic.Color != null)
+                            dgw.Rows[indexRow].DefaultCellStyle.BackColor = Colors.GetColor(analytic.Color);
+                    }
+                    if (saldoModel[indexRow].IdArticle != null)
+                    {
+                        article = ArticlesEntities.GetArticleById((int)saldoModel[indexRow].IdArticle);
+                        if (article.Color != null)
+                            dgw.Rows[indexRow].DefaultCellStyle.BackColor = Colors.GetColor(article.Color);
+                    }
                 }
-                if (saldoModel[indexRow].IdArticle != null)
-                {
-                    article = ArticlesEntities.GetArticleById((int)saldoModel[indexRow].IdArticle);
-                    if (article.Color != null)
-                        dgw.Rows[indexRow].DefaultCellStyle.BackColor = Colors.GetColor(article.Color);
-                }
-            }
+            }            
         }
     }
 }
