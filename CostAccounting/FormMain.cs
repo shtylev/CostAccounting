@@ -143,6 +143,9 @@ namespace CostAccounting
         void FillTableSaldoEndPeriod()
         {
             dgvSaldoEndPeriod.DataSource = saldosModelEndPeriod.ToList();
+
+            //красим строки
+            SaldoEntities.PaintTableSaldo(dgvSaldoEndPeriod, saldosModelEndPeriod);
         }
         void FillSaldoModelEndPeriod()
         {
