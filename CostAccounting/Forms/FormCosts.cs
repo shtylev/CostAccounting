@@ -60,6 +60,21 @@ namespace CostAccounting.Forms
         void FillTableCosts()
         {
             dgvCosts.DataSource = costsModel.ToList();
+
+            //красим строки, по цвету статьи
+            if(costsModel.Count != 0)
+            {
+                Articles article = new Articles();
+                Costs cost = new Costs();
+
+                for(int indexRow = 0; indexRow < costsModel.Count; indexRow++)
+                {
+                    cost = CostsEntities.GetCostById(costsModel[indexRow].Id);
+                    article = ArticlesEntities.GetArticleById(cost.IdArticle);
+                    if (article.Color != null)
+                        dgvCosts.Rows[indexRow].DefaultCellStyle.BackColor = Colors.GetColor(article.Color);
+                }
+            }
         }
         void FillCostsModel()
         {
