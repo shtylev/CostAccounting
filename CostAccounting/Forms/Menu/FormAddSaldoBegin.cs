@@ -75,6 +75,9 @@ namespace CostAccounting.Forms.Menu
         private void FillTable()
         {
             dgwSaldoBegin.DataSource = saldosModel.ToList();
+
+            //красим таблицу
+            SaldoEntities.PaintTableSaldo(dgwSaldoBegin, saldosModel);
         }
 
         private void btnAddAnalytic_Click(object sender, EventArgs e)
