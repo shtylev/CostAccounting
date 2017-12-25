@@ -62,7 +62,7 @@
             this.conMenuShowArchive,
             this.conMenuEditColor});
             this.cmsReference.Name = "cmsReference";
-            this.cmsReference.Size = new System.Drawing.Size(189, 114);
+            this.cmsReference.Size = new System.Drawing.Size(189, 136);
             // 
             // conMenuCreate
             // 
@@ -99,6 +99,7 @@
             // conMenuEditColor
             // 
             this.conMenuEditColor.Name = "conMenuEditColor";
+            this.conMenuEditColor.ShortcutKeys = System.Windows.Forms.Keys.F8;
             this.conMenuEditColor.Size = new System.Drawing.Size(188, 22);
             this.conMenuEditColor.Text = "Изменить цвет";
             this.conMenuEditColor.Click += new System.EventHandler(this.conMenuEditColor_Click);
