@@ -35,8 +35,8 @@
             this.conMenuRename = new System.Windows.Forms.ToolStripMenuItem();
             this.conMenuAddArchive = new System.Windows.Forms.ToolStripMenuItem();
             this.conMenuShowArchive = new System.Windows.Forms.ToolStripMenuItem();
-            this.lblTypeReference = new System.Windows.Forms.Label();
             this.conMenuEditColor = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblTypeReference = new System.Windows.Forms.Label();
             this.colorDialogRef = new System.Windows.Forms.ColorDialog();
             this.cmsReference.SuspendLayout();
             this.SuspendLayout();
@@ -96,6 +96,13 @@
             this.conMenuShowArchive.Text = "Показать архив";
             this.conMenuShowArchive.Click += new System.EventHandler(this.conMenuShowArchive_Click);
             // 
+            // conMenuEditColor
+            // 
+            this.conMenuEditColor.Name = "conMenuEditColor";
+            this.conMenuEditColor.Size = new System.Drawing.Size(188, 22);
+            this.conMenuEditColor.Text = "Изменить цвет";
+            this.conMenuEditColor.Click += new System.EventHandler(this.conMenuEditColor_Click);
+            // 
             // lblTypeReference
             // 
             this.lblTypeReference.AutoSize = true;
@@ -104,13 +111,6 @@
             this.lblTypeReference.Size = new System.Drawing.Size(0, 13);
             this.lblTypeReference.TabIndex = 2;
             this.lblTypeReference.Visible = false;
-            // 
-            // conMenuEditColor
-            // 
-            this.conMenuEditColor.Name = "conMenuEditColor";
-            this.conMenuEditColor.Size = new System.Drawing.Size(188, 22);
-            this.conMenuEditColor.Text = "Изменить цвет";
-            this.conMenuEditColor.Click += new System.EventHandler(this.conMenuEditColor_Click);
             // 
             // colorDialogRef
             // 

@@ -111,7 +111,7 @@ namespace CostAccounting.Forms.Menu
             //устанавливаем новый цвет для выбранного справочника
             if (colorDialogRef.ShowDialog() == DialogResult.OK)
             {
-                Color colorValue = Color.FromArgb(colorDialogRef.Color.R, colorDialogRef.Color.G, colorDialogRef.Color.B);
+                Color colorValue = Color.FromArgb(colorDialogRef.Color.R, colorDialogRef.Color.G, colorDialogRef.Color.B); //приводим к hex виду
                 string color = "#" + colorValue.Name;
 
                 if (lblTypeReference.Text == Resources.Analytics)
@@ -126,7 +126,7 @@ namespace CostAccounting.Forms.Menu
                         article.Color = color;
                 }
                 Config.db.SaveChanges();
-            }            
+            }                   
         }
     }
 }
