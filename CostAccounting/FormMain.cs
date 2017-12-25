@@ -107,39 +107,7 @@ namespace CostAccounting
                     cost.Sum = sumCost;
                     cost.Message = txtCostMessage.Text == "" ? null : txtCostMessage.Text;
                     cost.Date = dtpCostDate.Value.Date;
-                    Config.db.Costs.Add(cost);
-
-                    //прибавление суммы расхода к общей сумме сальдо
-                    //Saldo saldoTotalSumArticle = SaldoEntities.GetSaldoTotalSumForEndPeriod(null, idArticle);
-                    //Saldo saldoTotalSumAnalytic = SaldoEntities.GetSaldoTotalSumForEndPeriod(idAnalytic, null);
-                    
-                    ////обрабатываем общую сумму по аналитике
-                    //if (saldoTotalSumAnalytic != null)
-                    //{
-                    //    saldoTotalSumAnalytic.Sum += sumCost;
-                    //}
-                    //else
-                    //{
-                    //    //если нет общей суммы, то создавать
-                    //    saldoTotalSumAnalytic = new Saldo();
-                    //    saldoTotalSumAnalytic.Type = typeSaldoTotalSum;
-                    //    saldoTotalSumAnalytic.IdAnalytic = idAnalytic;
-                    //    saldoTotalSumAnalytic.Sum = sumCost;
-                    //    Config.db.Saldo.Add(saldoTotalSumAnalytic);
-                    //}                    
-
-                    ////обрабатываем общую сумму по статье
-                    //if (saldoTotalSumArticle != null)
-                    //    saldoTotalSumArticle.Sum += sumCost;
-                    //else
-                    //{
-                    //    //если нет общей суммы, то создавать
-                    //    saldoTotalSumArticle = new Saldo();
-                    //    saldoTotalSumArticle.Type = typeSaldoTotalSum;
-                    //    saldoTotalSumArticle.IdArticle = idArticle;
-                    //    saldoTotalSumArticle.Sum = sumCost;
-                    //    Config.db.Saldo.Add(saldoTotalSumArticle);
-                    //}
+                    Config.db.Costs.Add(cost);                    
 
                     //реализовать изменение сумм у сальдо на конец периода
                     //найти сальдо на конец периода
@@ -206,6 +174,7 @@ namespace CostAccounting
         void FillTableSvod()
         {
             List<Articles> articles = ArticlesEntities.GetArticles();
+            Articles article = new Articles();
 
             dgvSvod.Rows.Clear();
             dgvSvod.Columns.Clear();
@@ -245,7 +214,7 @@ namespace CostAccounting
                     {
                         case "IdArticle":
                             if (indexRows != articles.Count)
-                                dgvSvod.Rows[indexRows].Cells[columnSvod.Name].Value = articles[indexRows].Id;  //id статьи
+                                dgvSvod.Rows[indexRows].Cells[columnSvod.Name].Value = articles[indexRows].Id;  //id статьи                             
                             else
                                 dgvSvod.Rows[indexRows].Cells[columnSvod.Name].Value = 0;   //последняя строка для общих расходов
                             break;
@@ -267,8 +236,16 @@ namespace CostAccounting
                                 dgvSvod.Rows[indexRows].Cells[columnSvod.Name].Value = SvodEntities.GetTotalSumForMonth(nameColumn.Month, nameColumn.Year);
                             }
                             break;
-                    }
+                    }                    
                 }
+
+                //красим строки
+                if (indexRows != articles.Count)
+                {
+                    article = ArticlesEntities.GetArticleById(articles[indexRows].Id);
+                    if (article.Color != null)
+                        dgvSvod.Rows[indexRows].DefaultCellStyle.BackColor = Colors.GetColor(article.Color);
+                }                    
             }            
             #endregion
         }
