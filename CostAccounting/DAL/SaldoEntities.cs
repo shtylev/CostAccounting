@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CostAccounting.Model_Data;
+using System.Windows.Forms;
+using CostAccounting.Model;
 
 namespace CostAccounting.DAL
 {
@@ -194,6 +196,32 @@ namespace CostAccounting.DAL
             }
 
             return null;
+        }
+        /// <summary>
+        /// Раскрашивает таблицу, на основании выбранного цвета у аналитики или статьи
+        /// </summary>
+        /// <param name="dgw"></param>
+        /// <param name="saldoModel"></param>
+        public static void PaintTableSaldo(DataGridView dgw, List<SaldoModel> saldoModel)
+        {
+            for (int indexRow = 0; indexRow < saldoModel.Count; indexRow++)
+            {
+                Articles article = new Articles();
+                Analytics analytic = new Analytics();
+
+                if (saldoModel[indexRow].IdAnalytic != null)
+                {
+                    analytic = AnalyticsEntities.GetAnalyticById((int)saldoModel[indexRow].IdAnalytic);
+                    if (analytic.Color != null)
+                        dgw.Rows[indexRow].DefaultCellStyle.BackColor = Colors.GetColor(analytic.Color);
+                }
+                if (saldoModel[indexRow].IdArticle != null)
+                {
+                    article = ArticlesEntities.GetArticleById((int)saldoModel[indexRow].IdArticle);
+                    if (article.Color != null)
+                        dgw.Rows[indexRow].DefaultCellStyle.BackColor = Colors.GetColor(article.Color);
+                }
+            }
         }
     }
 }
