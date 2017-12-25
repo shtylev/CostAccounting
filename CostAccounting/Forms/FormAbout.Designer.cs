@@ -40,7 +40,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(184, 17);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Учет расходов    Версия: 1";
+            this.label1.Text = "Учет расходов    Версия: 2";
             // 
             // label2
             // 
